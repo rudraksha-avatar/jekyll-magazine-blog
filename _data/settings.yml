@@ -1,0 +1,14 @@
+show_reading_time: true
+show_author: true
+show_date: true
+show_categories: true
+show_tags: true
+show_share_buttons: true
+show_related_posts: true
+related_posts_count: 3
+show_toc: false
+show_breadcrumbs: true
+show_newsletter: true
+show_ad_placeholders: true
+posts_per_page: 9
+excerpt_length: 160

@@ -1,0 +1,51 @@
+header:
+  - title: "Home"
+    url: "/"
+  - title: "Blog"
+    url: "/blog/"
+  - title: "Technology"
+    url: "/category/technology/"
+  - title: "Culture"
+    url: "/category/culture/"
+  - title: "Lifestyle"
+    url: "/category/lifestyle/"
+  - title: "Business"
+    url: "/category/business/"
+  - title: "About"
+    url: "/about/"
+
+footer_col1:
+  title: "Sections"
+  links:
+    - title: "Technology"
+      url: "/category/technology/"
+    - title: "Culture"
+      url: "/category/culture/"
+    - title: "Lifestyle"
+      url: "/category/lifestyle/"
+    - title: "Business"
+      url: "/category/business/"
+    - title: "Science"
+      url: "/category/science/"
+
+footer_col2:
+  title: "Company"
+  links:
+    - title: "About"
+      url: "/about/"
+    - title: "Contact"
+      url: "/contact/"
+    - title: "Blog"
+      url: "/blog/"
+
+footer_col3:
+  title: "Legal"
+  links:
+    - title: "Privacy Policy"
+      url: "/privacy-policy/"
+    - title: "Terms & Conditions"
+      url: "/terms/"
+    - title: "Disclaimer"
+      url: "/disclaimer/"
+    - title: "Cookie Policy"
+      url: "/cookie-policy/"
