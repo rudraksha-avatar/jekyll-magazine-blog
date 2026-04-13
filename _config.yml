@@ -131,6 +131,13 @@ feed:
   path: feed.xml
   posts_limit: 20
 
+# Follow.it subscription
+# Replace the action URL in newsletter.html / sidebar.html / subscribe_inline.html
+# with your Follow.it form action once you've registered your feed at:
+# https://follow.it/add-feed
+followit:
+  feed_url: "/feed.xml"
+
 # ============================================================
 # Sass
 # ============================================================

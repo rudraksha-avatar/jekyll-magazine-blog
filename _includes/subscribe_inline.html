@@ -1,0 +1,29 @@
+<div class="inline-subscribe" aria-label="Subscribe to newsletter">
+  <div class="inline-subscribe-inner">
+    <div class="inline-subscribe-text">
+      <strong class="inline-subscribe-title">Enjoying this article?</strong>
+      <span class="inline-subscribe-sub">Get stories like this delivered to your inbox.</span>
+    </div>
+    <form
+      class="inline-subscribe-form"
+      action="https://api.follow.it/subscription-form/dGhlcHVsc2UuZXhhbXBsZS5jb20vZmVlZC54bWw=/8"
+      method="post"
+      aria-label="Inline email subscription"
+      target="_blank"
+      rel="noopener"
+    >
+      <label for="inline-email-{{ include.id | default: '1' }}" class="sr-only">Your email address</label>
+      <input
+        type="email"
+        id="inline-email-{{ include.id | default: '1' }}"
+        name="email"
+        placeholder="Your email address"
+        required
+        class="inline-subscribe-input"
+        autocomplete="email"
+        aria-required="true"
+      >
+      <button type="submit" class="inline-subscribe-btn">Get Updates</button>
+    </form>
+  </div>
+</div>

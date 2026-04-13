@@ -984,6 +984,217 @@
   }
 }
 
+// RSS link inside newsletter section
+.newsletter-rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  margin-top: $space-4;
+  font-size: $text-xs;
+  font-weight: $font-medium;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  svg {
+    flex-shrink: 0;
+    color: #f4a261;
+  }
+
+  &:hover {
+    color: rgba(255,255,255,0.85);
+  }
+}
+
+// ============================================================
+// Sidebar Subscribe Widget
+// ============================================================
+
+.sidebar-subscribe {
+  // inherits .sidebar-widget spacing
+}
+
+.sidebar-subscribe-text {
+  font-size: $text-sm;
+  color: $color-text-muted;
+  margin-bottom: $space-4;
+  line-height: $leading-relaxed;
+}
+
+.sidebar-subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  margin-bottom: $space-3;
+}
+
+.sidebar-subscribe-input {
+  width: 100%;
+  padding: $space-3 $space-3;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $text-sm;
+  color: $color-text;
+  background: $color-bg;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba($color-accent, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-text-light;
+  }
+}
+
+.sidebar-subscribe-btn {
+  width: 100%;
+  padding: $space-3 $space-4;
+  background: $color-accent;
+  color: #fff;
+  font-size: $text-sm;
+  font-weight: $font-semi;
+  border-radius: $radius-sm;
+  transition: background $transition-fast;
+  text-align: center;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+.sidebar-rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $text-xs;
+  color: $color-text-muted;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  svg {
+    flex-shrink: 0;
+    color: #f4a261;
+  }
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+// ============================================================
+// Inline Subscribe CTA (inside post content)
+// ============================================================
+
+.inline-subscribe {
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  border-left: 4px solid $color-accent;
+  border-radius: $radius-md;
+  padding: $space-5 $space-6;
+  margin: $space-8 0;
+
+  @media (max-width: $bp-sm) {
+    padding: $space-4 $space-5;
+    margin: $space-6 0;
+  }
+}
+
+.inline-subscribe-inner {
+  display: flex;
+  align-items: center;
+  gap: $space-6;
+
+  @media (max-width: $bp-md) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-4;
+  }
+}
+
+.inline-subscribe-text {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  flex-shrink: 0;
+  min-width: 0;
+
+  @media (max-width: $bp-md) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: $space-2;
+  }
+}
+
+.inline-subscribe-title {
+  font-size: $text-base;
+  font-weight: $font-bold;
+  color: $color-text;
+  display: block;
+}
+
+.inline-subscribe-sub {
+  font-size: $text-sm;
+  color: $color-text-muted;
+}
+
+.inline-subscribe-form {
+  display: flex;
+  gap: $space-2;
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.inline-subscribe-input {
+  flex: 1;
+  min-width: 0;
+  padding: $space-3 $space-4;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $text-sm;
+  color: $color-text;
+  background: $color-bg;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba($color-accent, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-text-light;
+  }
+}
+
+.inline-subscribe-btn {
+  padding: $space-3 $space-5;
+  background: $color-accent;
+  color: #fff;
+  font-size: $text-sm;
+  font-weight: $font-semi;
+  border-radius: $radius-sm;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+
+  @media (max-width: $bp-sm) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 // ============================================================
 // No Posts
 // ============================================================

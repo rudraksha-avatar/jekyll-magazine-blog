@@ -175,6 +175,11 @@ layout: default
         </div>
         {% endif %}
 
+        <!-- Inline Subscribe CTA -->
+        {% if site.data.settings.show_newsletter %}
+        {% include subscribe_inline.html id="post" %}
+        {% endif %}
+
         <!-- Share -->
         {% if settings.show_share_buttons %}
         {% include share_buttons.html %}
