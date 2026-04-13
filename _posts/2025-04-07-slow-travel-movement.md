@@ -6,7 +6,7 @@ date: 2025-04-07
 categories: [lifestyle]
 tags: [travel, slow-travel, culture, wellness]
 author: editorial
-image: /assets/images/posts/slow-travel.jpg
+image: https://placehold.co/1200x675/2d6a4f/ffffff?text=Slow+Travel
 image_alt: "A quiet cobblestone street in a European village at golden hour"
 featured: true
 toc: false

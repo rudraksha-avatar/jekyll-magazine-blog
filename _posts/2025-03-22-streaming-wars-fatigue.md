@@ -6,7 +6,7 @@ date: 2025-03-22
 categories: [culture]
 tags: [streaming, media, television, entertainment, technology]
 author: marcus_reed
-image: /assets/images/posts/streaming-fatigue.jpg
+image: https://placehold.co/1200x675/2d3748/ffffff?text=Streaming+Fatigue
 image_alt: "A remote control in front of a blurred TV screen showing multiple streaming logos"
 featured: false
 toc: false

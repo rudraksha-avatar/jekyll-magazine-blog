@@ -178,7 +178,7 @@
   // ============================================================
   document.querySelectorAll('img').forEach(function (img) {
     img.addEventListener('error', function () {
-      this.src = '/assets/images/default-post.jpg';
+      this.src = 'https://placehold.co/800x450/e5e7eb/6b7280?text=Image+Not+Found';
       this.alt = 'Image not available';
     });
   });

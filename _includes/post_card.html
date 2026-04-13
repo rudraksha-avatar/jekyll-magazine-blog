@@ -6,7 +6,7 @@
   <a href="{{ p.url | relative_url }}" class="post-card-image-link" tabindex="-1" aria-hidden="true">
     <div class="post-card-image-wrap">
       <img
-        src="{{ p.image | default: '/assets/images/default-post.jpg' }}"
+        src="{{ p.image | default: 'https://placehold.co/400x225/e5e7eb/6b7280?text=The+Pulse' }}"
         alt="{{ p.image_alt | default: p.title }}"
         loading="lazy"
         class="post-card-image"

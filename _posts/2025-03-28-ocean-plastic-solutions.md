@@ -6,7 +6,7 @@ date: 2025-03-28
 categories: [science]
 tags: [environment, ocean, plastic, climate, research]
 author: james_okafor
-image: /assets/images/posts/ocean-plastic.jpg
+image: https://placehold.co/1200x675/1d4e89/ffffff?text=Ocean+Plastic
 image_alt: "Ocean waves with plastic debris visible on the surface"
 featured: false
 toc: true

@@ -6,7 +6,7 @@ date: 2025-03-15
 categories: [technology]
 tags: [artificial-intelligence, open-source, software, policy]
 author: sarah_chen
-image: /assets/images/posts/open-source-ai.jpg
+image: https://placehold.co/1200x675/1a1a2e/e63946?text=Open+Source+AI
 image_alt: "Lines of code on a dark screen representing open source software"
 featured: false
 toc: false

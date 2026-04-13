@@ -6,7 +6,7 @@ date: 2025-03-08
 categories: [lifestyle, science]
 tags: [food, urban-farming, sustainability, environment, cities]
 author: james_okafor
-image: /assets/images/posts/urban-farming.jpg
+image: https://placehold.co/1200x675/1b4332/ffffff?text=Urban+Farming
 image_alt: "Rows of green plants growing under LED lights in a vertical farm"
 featured: false
 toc: false

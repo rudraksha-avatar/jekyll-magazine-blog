@@ -7,7 +7,7 @@ last_modified_at: 2025-04-11
 categories: [technology]
 tags: [artificial-intelligence, productivity, future-of-work, software]
 author: sarah_chen
-image: /assets/images/posts/ai-assistants.jpg
+image: https://placehold.co/1200x675/1a1a2e/ffffff?text=AI+Assistants
 image_alt: "A person working at a laptop with an AI interface on screen"
 featured: true
 toc: true

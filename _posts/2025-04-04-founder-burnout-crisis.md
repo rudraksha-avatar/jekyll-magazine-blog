@@ -6,7 +6,7 @@ date: 2025-04-04
 categories: [business]
 tags: [entrepreneurship, mental-health, startups, leadership]
 author: priya_sharma
-image: /assets/images/posts/founder-burnout.jpg
+image: https://placehold.co/1200x675/7b2d8b/ffffff?text=Founder+Burnout
 image_alt: "An entrepreneur sitting alone at a desk late at night, looking exhausted"
 featured: true
 toc: false

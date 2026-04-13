@@ -6,7 +6,7 @@ date: 2025-02-25
 categories: [business]
 tags: [remote-work, future-of-work, management, productivity, workplace]
 author: priya_sharma
-image: /assets/images/posts/remote-work.jpg
+image: https://placehold.co/1200x675/374151/ffffff?text=Remote+Work
 image_alt: "A person working from a home office with a laptop and coffee"
 featured: false
 toc: false

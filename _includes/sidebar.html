@@ -12,9 +12,14 @@
     {% for post in site.posts limit:5 %}
     <li class="sidebar-post-item">
       <a href="{{ post.url | relative_url }}" class="sidebar-post-link">
-        {% if post.image %}
-        <img src="{{ post.image }}" alt="{{ post.image_alt | default: post.title }}" loading="lazy" class="sidebar-post-thumb" width="64" height="64">
-        {% endif %}
+        <img
+          src="{{ post.image | default: 'https://placehold.co/64x64/e5e7eb/6b7280?text=...' }}"
+          alt="{{ post.image_alt | default: post.title }}"
+          loading="lazy"
+          class="sidebar-post-thumb"
+          width="64"
+          height="64"
+        >
         <div class="sidebar-post-info">
           <span class="sidebar-post-title">{{ post.title | truncatewords: 8 }}</span>
           <time class="sidebar-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
