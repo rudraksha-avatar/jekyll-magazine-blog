@@ -4,9 +4,19 @@
 
 // Hero Section
 .hero-section {
-  padding: $space-12 0 $space-10;
+  padding: $space-10 0 $space-8;
   border-bottom: 1px solid $color-border;
-  margin-bottom: $space-12;
+  margin-bottom: $space-10;
+
+  @media (max-width: $bp-md) {
+    padding: $space-8 0 $space-6;
+    margin-bottom: $space-8;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-6 0 $space-5;
+    margin-bottom: $space-6;
+  }
 }
 
 .hero-grid {
@@ -17,6 +27,11 @@
 
   @media (max-width: $bp-lg) {
     grid-template-columns: 1fr;
+    gap: $space-6;
+  }
+
+  @media (max-width: $bp-sm) {
+    gap: $space-4;
   }
 }
 
@@ -28,13 +43,17 @@
 
   .post-card-image-wrap {
     aspect-ratio: 4/3;
+
+    @media (max-width: $bp-lg) {
+      aspect-ratio: 16/9;
+    }
   }
 }
 
 .hero-secondary {
   display: flex;
   flex-direction: column;
-  gap: $space-5;
+  gap: $space-4;
 }
 
 .hero-secondary-card {
@@ -102,19 +121,34 @@
 
 // Latest Posts Section
 .latest-section {
-  margin-bottom: $space-16;
+  margin-bottom: $space-12;
+
+  @media (max-width: $bp-sm) {
+    margin-bottom: $space-8;
+  }
 }
 
 // Homepage Category Sections
 .homepage-categories {
-  margin-bottom: $space-8;
+  margin-bottom: $space-6;
 }
 
 // Editor Picks / Trending
+// Full-bleed background: must sit outside .container
 .trending-section {
   background: $color-bg-alt;
-  padding: $space-12 0;
-  margin: $space-16 0;
+  padding: $space-10 0;
+  margin: $space-12 0;
+
+  @media (max-width: $bp-md) {
+    padding: $space-8 0;
+    margin: $space-10 0;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-6 0;
+    margin: $space-8 0;
+  }
 }
 
 .trending-grid {
@@ -124,10 +158,12 @@
 
   @media (max-width: $bp-lg) {
     grid-template-columns: repeat(2, 1fr);
+    gap: $space-4;
   }
 
   @media (max-width: $bp-sm) {
     grid-template-columns: 1fr;
+    gap: $space-4;
   }
 }
 
@@ -175,11 +211,12 @@
 .homepage-layout {
   display: grid;
   grid-template-columns: 1fr $sidebar-width;
-  gap: $space-12;
+  gap: $space-10;
   align-items: start;
 
   @media (max-width: $bp-lg) {
     grid-template-columns: 1fr;
+    gap: $space-6;
   }
 }
 
@@ -188,6 +225,10 @@
 }
 
 .homepage-sidebar {
+  min-width: 0;
+  position: sticky;
+  top: calc(64px + #{$space-6});
+
   @media (max-width: $bp-lg) {
     display: none;
   }

@@ -12,6 +12,7 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -23,9 +24,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  // flex column so footer sticks to bottom and newsletter/footer stack cleanly
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-img, video, iframe {
+main {
+  flex: 1;
+  // Prevent margin collapse from leaking out of main into body
+  overflow: hidden;
+}
+
+img, video, iframe, embed, object {
   max-width: 100%;
   height: auto;
   display: block;
@@ -47,6 +58,7 @@ a {
   }
 }
 
+// Reset list styles globally — components re-apply as needed
 ul, ol {
   list-style: none;
 }
@@ -56,13 +68,17 @@ button {
   border: none;
   background: none;
   font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 input, textarea, select {
   font-family: inherit;
   font-size: inherit;
+  line-height: inherit;
 }
 
+// Headings — no margin by default, components set their own
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-sans;
   font-weight: $font-bold;
@@ -70,12 +86,14 @@ h1, h2, h3, h4, h5, h6 {
   color: $color-text;
 }
 
+// Paragraphs — no global margin-bottom to avoid bleed into components
+// Prose contexts (post-content, page-body, policy-content) set their own
 p {
-  margin-bottom: $space-4;
+  margin-bottom: 0;
+}
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+table {
+  border-collapse: collapse;
 }
 
 // Screen reader only
@@ -102,8 +120,10 @@ p {
   border-radius: $radius-sm;
   z-index: 9999;
   font-weight: $font-semi;
+  text-decoration: none;
 
   &:focus {
     top: $space-4;
+    color: #fff;
   }
 }

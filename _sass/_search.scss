@@ -4,6 +4,10 @@
 
 .search-page {
   padding: $space-10 0 $space-16;
+
+  @media (max-width: $bp-sm) {
+    padding: $space-8 0 $space-10;
+  }
 }
 
 .search-header {
@@ -14,6 +18,10 @@
   font-size: $text-3xl;
   font-weight: $font-bold;
   margin-bottom: $space-4;
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-2xl;
+  }
 }
 
 .search-form-wrap {
@@ -24,10 +32,15 @@
 .search-form {
   display: flex;
   gap: $space-2;
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+  }
 }
 
 .search-input {
   flex: 1;
+  min-width: 0;
   padding: $space-3 $space-4;
   border: 2px solid $color-border;
   border-radius: $radius-sm;
@@ -57,6 +70,8 @@
   display: flex;
   align-items: center;
   gap: $space-2;
+  white-space: nowrap;
+  flex-shrink: 0;
 
   &:hover {
     background: $color-accent-hover;
@@ -98,6 +113,8 @@
   font-size: $text-xl;
   font-weight: $font-bold;
   margin-bottom: $space-2;
+  overflow-wrap: break-word;
+  word-break: break-word;
 
   a {
     color: $color-text;
@@ -105,6 +122,10 @@
     &:hover {
       color: $color-accent;
     }
+  }
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-lg;
   }
 }
 
