@@ -12,26 +12,32 @@ layout: default
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": {{ page.title | jsonify }},
-  "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
-  "image": "{{ page.image | default: site.defaults[0].values.image | prepend: site.url }}",
+  "description": {{ page.description | default: page.excerpt | strip_html | truncatewords: 40 | jsonify }},
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ page.image | default: 'https://placehold.co/1200x675/e5e7eb/6b7280?text=The+Pulse' }}"
+  },
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
   "author": {
     "@type": "Person",
-    "name": "{{ author.display_name | default: page.author }}"
+    "name": {{ author.display_name | default: page.author | jsonify }}{% if author.website %},
+    "url": "{{ author.website }}"{% endif %}
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ site.title }}",
+    "name": {{ site.title | jsonify }},
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ site.organization.logo | prepend: site.url }}"
+      "url": "{{ site.organization.logo }}"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ page.url | absolute_url }}"
-  }
+  }{% if page.categories.size > 0 %},
+  "articleSection": {{ page.categories.first | capitalize | jsonify }}{% endif %}{% if page.tags.size > 0 %},
+  "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}
 }
 </script>
 
@@ -56,7 +62,7 @@ layout: default
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "{{ page.categories.first | capitalize }}",
+      "name": {{ page.categories.first | capitalize | jsonify }},
       "item": "{{ site.url }}/category/{{ page.categories.first | slugify }}/"
     },
     {
@@ -102,9 +108,8 @@ layout: default
           {% if page.categories.size > 0 %}
           <div class="post-categories">
             {% for cat in page.categories %}
-            {% assign cat_slug = cat | slugify %}
-            {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
-            <a href="{{ cat_path | relative_url }}" class="category-badge">{{ cat | capitalize }}</a>
+            {% include cat_url.html cat=cat %}
+            <a href="{{ cat_url }}" class="category-badge">{{ cat | capitalize }}</a>
             {% endfor %}
           </div>
           {% endif %}
@@ -146,7 +151,14 @@ layout: default
 
         {% if page.image %}
         <figure class="post-featured-image">
-          <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title }}" loading="lazy" itemprop="image">
+          <img
+            src="{{ page.image }}"
+            alt="{{ page.image_alt | default: page.title }}"
+            loading="lazy"
+            itemprop="image"
+            width="1200"
+            height="675"
+          >
         </figure>
         {% endif %}
 
@@ -172,9 +184,8 @@ layout: default
         <div class="post-tags">
           <span class="tags-label">Tags:</span>
           {% for tag in page.tags %}
-          {% assign tag_slug = tag | slugify %}
-          {% assign tag_path = '/tag/' | append: tag_slug | append: '/' %}
-          <a href="{{ tag_path | relative_url }}" class="tag-badge">{{ tag }}</a>
+          {% include tag_url.html tag=tag %}
+          <a href="{{ tag_url }}" class="tag-badge">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}

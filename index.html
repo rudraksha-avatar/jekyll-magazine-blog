@@ -47,9 +47,8 @@ pagination:
           </div>
           <div class="hero-secondary-body">
             {% if post.categories.size > 0 %}
-            {% assign hero_cat_slug = post.categories.first | slugify %}
-            {% assign hero_cat_path = '/category/' | append: hero_cat_slug | append: '/' %}
-            <a href="{{ hero_cat_path | relative_url }}" class="category-badge">{{ post.categories.first | capitalize }}</a>
+            {% include cat_url.html cat=post.categories.first %}
+            <a href="{{ cat_url }}" class="category-badge">{{ post.categories.first | capitalize }}</a>
             {% endif %}
             <h2 class="hero-secondary-title">
               <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -88,7 +87,7 @@ pagination:
       <section class="latest-section" aria-label="Latest articles">
         <div class="section-header">
           <h2 class="section-title">Latest Articles</h2>
-          <a href="{{ '/blog/' | relative_url }}" class="section-more-link">View all &rarr;</a>
+          <a href="{{ '/blog/' | relative_url }}" class="section-more-link" aria-label="View all articles">View all &rarr;</a>
         </div>
         <div class="posts-grid">
           {% for post in site.posts limit:6 %}
@@ -123,17 +122,17 @@ pagination:
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Trending Now</h2>
-      <a href="{{ '/blog/' | relative_url }}" class="section-more-link">See all &rarr;</a>
+      <a href="{{ '/blog/' | relative_url }}" class="section-more-link" aria-label="See all articles">See all &rarr;</a>
     </div>
     <div class="trending-grid">
       {% for post in trending_posts limit:8 %}
+      {% assign trend_num = forloop.index %}
       <div class="trending-card">
-        <span class="trending-number">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+        <span class="trending-number" aria-hidden="true">{% if trend_num < 10 %}0{% endif %}{{ trend_num }}</span>
         <div class="trending-info">
           {% if post.categories.size > 0 %}
-          {% assign trend_cat_slug = post.categories.first | slugify %}
-          {% assign trend_cat_path = '/category/' | append: trend_cat_slug | append: '/' %}
-          <a href="{{ trend_cat_path | relative_url }}" class="category-badge trending-category">{{ post.categories.first | capitalize }}</a>
+          {% include cat_url.html cat=post.categories.first %}
+          <a href="{{ cat_url }}" class="category-badge trending-category">{{ post.categories.first | capitalize }}</a>
           {% endif %}
           <h3 class="trending-title">
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>

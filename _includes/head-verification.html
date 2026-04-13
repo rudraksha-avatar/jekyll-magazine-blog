@@ -1,0 +1,27 @@
+{% comment %}
+  head-verification.html
+  ----------------------
+  Renders site-ownership verification <meta> tags in <head>.
+  All values are read from _data/integrations.yml.
+  A tag is only rendered when its value is non-empty.
+
+  Usage: {% include head-verification.html %}
+{% endcomment %}
+
+{% assign v = site.data.integrations.verification %}
+
+{% if v.google and v.google != "" %}
+<meta name="google-site-verification" content="{{ v.google }}">
+{% endif %}
+
+{% if v.bing and v.bing != "" %}
+<meta name="msvalidate.01" content="{{ v.bing }}">
+{% endif %}
+
+{% if v.pinterest and v.pinterest != "" %}
+<meta name="p:domain_verify" content="{{ v.pinterest }}">
+{% endif %}
+
+{% if v.yandex and v.yandex != "" %}
+<meta name="yandex-verification" content="{{ v.yandex }}">
+{% endif %}

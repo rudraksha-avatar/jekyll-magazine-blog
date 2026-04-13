@@ -211,6 +211,11 @@
   }
 }
 
+// Inner wrapper (used in category/tag layouts)
+.archive-header-inner {
+  // No extra styles needed — inherits from .archive-header
+}
+
 .archive-label {
   display: inline-block;
   font-size: $text-xs;

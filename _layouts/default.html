@@ -7,15 +7,7 @@
 
   {% seo %}
 
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ '/feed.xml' | relative_url }}">
-  <link rel="manifest" href="{{ '/assets/site.webmanifest' | relative_url }}">
-  <meta name="theme-color" content="#1a1a2e">
-
+  <!-- Canonical URL -->
   {% if page.canonical_url %}
   <link rel="canonical" href="{{ page.canonical_url }}">
   {% else %}
@@ -26,17 +18,36 @@
   <meta name="robots" content="noindex, nofollow">
   {% endif %}
 
-  <!-- Schema: Website -->
+  <!-- Fonts: preconnect first, then non-blocking load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+  <!-- Site stylesheet -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <!-- Feed, manifest, theme -->
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="manifest" href="{{ '/assets/site.webmanifest' | relative_url }}">
+  <meta name="theme-color" content="#1a1a2e">
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+
+  <!-- Schema: WebSite -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "{{ site.title }}",
+    "name": {{ site.title | jsonify }},
     "url": "{{ site.url }}",
-    "description": "{{ site.description }}",
+    "description": {{ site.description | jsonify }},
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "{{ site.url }}/search/?q={search_term_string}",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ site.url }}/search/?q={search_term_string}"
+      },
       "query-input": "required name=search_term_string"
     }
   }
@@ -47,15 +58,30 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "{{ site.organization.name | default: site.title }}",
+    "name": {{ site.organization.name | default: site.title | jsonify }},
     "url": "{{ site.url }}",
-    "logo": "{{ site.organization.logo | prepend: site.url }}"
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.organization.logo }}"
+    }{% if site.social.twitter %},
+    "sameAs": [
+      "https://twitter.com/{{ site.social.twitter }}"{% if site.social.facebook %},
+      "https://facebook.com/{{ site.social.facebook }}"{% endif %}{% if site.social.linkedin %},
+      "https://linkedin.com/company/{{ site.social.linkedin }}"{% endif %}
+    ]{% endif %}
   }
   </script>
 
   {% if page.schema %}{{ page.schema }}{% endif %}
+
+  <!-- Google Analytics, GTM, AdSense, verification meta tags -->
+  {% include head-integrations.html %}
+
 </head>
 <body class="{% if page.layout %}layout-{{ page.layout }}{% endif %}">
+
+  <!-- Google Tag Manager (noscript) — must be first inside <body> -->
+  {% include body-gtm.html %}
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 

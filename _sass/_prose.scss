@@ -187,7 +187,7 @@
 
   mark {
     background: rgba($color-accent, 0.15);
-    color: darken($color-accent, 10%);
+    color: $color-accent-hover;
     padding: 1px 4px;
     border-radius: 3px;
     font-style: normal;
@@ -717,7 +717,7 @@
   .danger {
     background: rgba($color-accent, 0.08);
     border-left-color: $color-accent;
-    color: darken($color-accent, 15%);
+    color: #a50e19;
   }
 
   // ==========================================================
@@ -729,11 +729,11 @@
 }
 
 // ============================================================
-// Prose variant modifiers (standalone, for @extend or direct use)
+// Prose variant modifiers (standalone selectors)
+// These complement the nested &.prose--serif etc. inside .prose
 // ============================================================
 
-// Serif body text — for blog posts
-.prose--serif,
+// Serif body text — for blog posts (when used as standalone class)
 .post-content {
   font-family: $font-serif;
   font-size: $text-lg;
@@ -744,15 +744,9 @@
   }
 }
 
-// Smaller base size — for policy/legal pages
-.prose--sm,
-.policy-content {
-  font-size: $text-base;
-  line-height: $leading-relaxed;
-}
-
 // Width-constrained reading column
-.prose--constrained,
 .policy-content {
   max-width: $container-narrow;
+  font-size: $text-base;
+  line-height: $leading-relaxed;
 }

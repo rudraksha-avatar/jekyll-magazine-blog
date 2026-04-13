@@ -21,18 +21,27 @@ layout: default
 
 <div class="container archive-layout">
 
+  {% if site.data.settings.show_breadcrumbs %}
+  {% include breadcrumbs.html %}
+  {% endif %}
+
   <header class="archive-header category-header">
-    <div class="archive-header-inner">
-      <span class="archive-label">Category</span>
-      <h1 class="archive-title">{{ cat_name | capitalize }}</h1>
-      {% if cat_desc %}
-      <p class="archive-description">{{ cat_desc }}</p>
-      {% endif %}
-      {% if paginator.total_posts %}
-      <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %}</p>
-      {% endif %}
-    </div>
+    <span class="archive-label">Category</span>
+    <h1 class="archive-title">{{ cat_name | capitalize }}</h1>
+    {% if cat_desc %}
+    <p class="archive-description">{{ cat_desc }}</p>
+    {% endif %}
+    {% if paginator.total_posts %}
+    <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %}</p>
+    {% endif %}
   </header>
+
+  <!-- Ad: Top Banner Placeholder -->
+  {% if site.data.settings.show_ad_placeholders %}
+  <div class="ad-placeholder ad-top-banner" aria-hidden="true">
+    <span>Advertisement</span>
+  </div>
+  {% endif %}
 
   {% if paginator.posts.size > 0 %}
   <div class="posts-grid">

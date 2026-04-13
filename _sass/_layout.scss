@@ -277,17 +277,22 @@
 .footer-brand {
   min-width: 0;
 
+  .footer-logo-link {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: $space-3;
+
+    &:hover .footer-site-title {
+      color: rgba(255,255,255,0.8);
+    }
+  }
+
   .footer-site-title {
     font-size: $text-xl;
     font-weight: $font-bold;
     color: #fff;
     display: block;
-    margin-bottom: $space-3;
     text-decoration: none;
-
-    &:hover {
-      color: rgba(255,255,255,0.8);
-    }
   }
 }
 

@@ -1,0 +1,32 @@
+{% comment %}
+  head-analytics.html
+  -------------------
+  Google Analytics 4 (GA4) — global site tag.
+  Loaded only when google_analytics.enabled is true in
+  _data/integrations.yml.
+
+  Placement: inside <head>, after meta/link tags.
+
+  NOTE: If you are using Google Tag Manager (head-gtm.html)
+  to fire GA4, set google_analytics.enabled: false here and
+  configure the GA4 tag inside your GTM container instead.
+  Loading both independently will result in duplicate hits.
+
+  Usage: {% include head-analytics.html %}
+{% endcomment %}
+
+{% assign ga = site.data.integrations.google_analytics %}
+
+{% if ga.enabled and ga.measurement_id != "" and ga.measurement_id != "G-XXXXXXXXXX" %}
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ ga.measurement_id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ ga.measurement_id }}', {
+    anonymize_ip: true
+  });
+</script>
+<!-- End Google Analytics 4 -->
+{% endif %}

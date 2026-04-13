@@ -9,6 +9,7 @@
         {% unless related contains post %}
           {% assign related = related | push: post %}
         {% endunless %}
+        {% break %}
       {% endif %}
     {% endfor %}
   {% endif %}
@@ -30,13 +31,15 @@
   {% endfor %}
 {% endif %}
 
-{% assign related = related | uniq | limit: max_related %}
+{% assign related = related | uniq %}
+{% assign related_count = related.size %}
+{% if related_count > max_related %}{% assign related_count = max_related %}{% endif %}
 
 {% if related.size > 0 %}
 <section class="related-posts" aria-label="Related articles">
   <h2 class="related-posts-title">Related Articles</h2>
   <div class="related-posts-grid">
-    {% for post in related %}
+    {% for post in related limit:max_related %}
     {% include post_card.html post=post %}
     {% endfor %}
   </div>

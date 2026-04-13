@@ -3,6 +3,7 @@ layout: default
 title: "Search"
 description: "Search articles, topics, and authors on The Pulse."
 permalink: /search/
+sitemap: false
 ---
 
 <div class="container search-layout">
@@ -26,7 +27,7 @@ permalink: /search/
             type="search"
             id="search-input"
             class="search-input"
-            placeholder="Search articles, topics, authors…"
+            placeholder="Search articles, topics, authors&hellip;"
             autocomplete="off"
             spellcheck="false"
             aria-label="Search articles, topics, authors"
@@ -51,9 +52,10 @@ permalink: /search/
       <div class="search-idle-tags">
         {% assign all_cats = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
         {% for cat in all_cats limit:6 %}
-        {% assign cat_slug = cat | slugify %}
-        {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
-        <a href="{{ cat_path | relative_url }}" class="tag-badge">{{ cat | capitalize }}</a>
+        {% if cat != "" %}
+        {% include cat_url.html cat=cat %}
+        <a href="{{ cat_url }}" class="tag-badge">{{ cat | capitalize }}</a>
+        {% endif %}
         {% endfor %}
       </div>
     </div>

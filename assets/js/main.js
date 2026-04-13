@@ -9,12 +9,12 @@
   // ============================================================
   // Mobile Navigation Toggle
   // ============================================================
-  const navToggle = document.getElementById('nav-toggle');
-  const siteNav = document.getElementById('site-nav');
+  var navToggle = document.getElementById('nav-toggle');
+  var siteNav   = document.getElementById('site-nav');
 
   if (navToggle && siteNav) {
     navToggle.addEventListener('click', function () {
-      const isOpen = siteNav.classList.toggle('is-open');
+      var isOpen = siteNav.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
@@ -37,43 +37,50 @@
   }
 
   // ============================================================
-  // Search
-  // Search logic lives in assets/js/search.js which is loaded
-  // only on the search page — keeping main.js lean.
-  // ============================================================
-
-  // ============================================================
-  // Debounce utility
-  // ============================================================
-  function debounce(fn, delay) {
-    let timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(fn, delay);
-    };
-  }
-
-  // ============================================================
   // Lazy image fallback
   // ============================================================
-  document.querySelectorAll('img').forEach(function (img) {
+  document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
     img.addEventListener('error', function () {
-      this.src = 'https://placehold.co/800x450/e5e7eb/6b7280?text=Image+Not+Found';
-      this.alt = 'Image not available';
+      if (!this.dataset.errored) {
+        this.dataset.errored = '1';
+        this.src = 'https://placehold.co/800x450/e5e7eb/6b7280?text=Image+Not+Found';
+        this.alt = 'Image not available';
+      }
     });
   });
 
   // ============================================================
-  // Smooth scroll for anchor links
+  // Smooth scroll for anchor links (respects prefers-reduced-motion)
   // ============================================================
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Update focus for accessibility
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        }
+      });
     });
+  }
+
+  // ============================================================
+  // Active nav link highlighting
+  // ============================================================
+  var currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-item a').forEach(function (link) {
+    var href = link.getAttribute('href');
+    if (href && href !== '/' && currentPath.indexOf(href) === 0) {
+      link.closest('.nav-item').classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    }
   });
 
 })();

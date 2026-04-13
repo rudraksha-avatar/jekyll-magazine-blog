@@ -1,0 +1,77 @@
+# ============================================================
+# Google & Third-Party Integrations
+# ============================================================
+# This is the single source of truth for all integration IDs
+# and enable/disable switches across the entire site.
+#
+# HOW TO USE:
+#   1. Replace the placeholder values below with your real IDs.
+#   2. Set enabled: true to activate each service.
+#   3. Rebuild the site — changes apply everywhere automatically.
+#
+# PLACEHOLDER VALUES (safe to commit — nothing loads until enabled: true):
+#   GA4 ID format:       G-XXXXXXXXXX
+#   GTM ID format:       GTM-XXXXXXX
+#   AdSense client:      ca-pub-XXXXXXXXXXXXXXXX
+#   Verification tag:    the value="" string from Google Search Console
+# ============================================================
+
+# ------------------------------------------------------------
+# Google Analytics 4 (GA4)
+# Get your ID from: https://analytics.google.com
+# Measurement ID looks like: G-XXXXXXXXXX
+# ------------------------------------------------------------
+google_analytics:
+  enabled: false
+  measurement_id: "G-XXXXXXXXXX"
+
+# ------------------------------------------------------------
+# Google Tag Manager (GTM)
+# Get your container ID from: https://tagmanager.google.com
+# Container ID looks like: GTM-XXXXXXX
+#
+# NOTE: If you use GTM, you can fire GA4 through GTM instead
+# of loading both. Set google_analytics.enabled: false and
+# google_tag_manager.enabled: true to use GTM-only mode.
+# ------------------------------------------------------------
+google_tag_manager:
+  enabled: false
+  container_id: "GTM-XXXXXXX"
+
+# ------------------------------------------------------------
+# Google AdSense
+# Get your publisher ID from: https://adsense.google.com
+# Publisher ID looks like: ca-pub-XXXXXXXXXXXXXXXX
+#
+# auto_ads: true  → enables AdSense Auto Ads site-wide
+# auto_ads: false → loads the AdSense script but relies on
+#                   manual ad units placed in templates only
+# ------------------------------------------------------------
+google_adsense:
+  enabled: false
+  publisher_id: "ca-pub-XXXXXXXXXXXXXXXX"
+  auto_ads: false
+
+# ------------------------------------------------------------
+# Site Verification Meta Tags
+# These render as <meta name="..." content="..."> in <head>.
+# Leave the value blank ("") to skip that tag entirely.
+#
+# Google Search Console:
+#   https://search.google.com/search-console
+#   → Add property → HTML tag → copy the content="" value
+#
+# Bing Webmaster Tools:
+#   https://www.bing.com/webmasters
+#
+# Pinterest:
+#   https://business.pinterest.com
+#
+# Yandex Webmaster:
+#   https://webmaster.yandex.com
+# ------------------------------------------------------------
+verification:
+  google: ""
+  bing: ""
+  pinterest: ""
+  yandex: ""

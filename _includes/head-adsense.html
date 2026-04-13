@@ -1,0 +1,38 @@
+{% comment %}
+  head-adsense.html
+  -----------------
+  Google AdSense — global publisher script.
+  Loaded only when google_adsense.enabled is true in
+  _data/integrations.yml.
+
+  auto_ads: true  → enables AdSense Auto Ads site-wide.
+                    AdSense will automatically find and fill
+                    ad slots across all pages.
+  auto_ads: false → loads the AdSense script for manual ad
+                    units only. Place <ins class="adsbygoogle">
+                    elements where you want ads to appear.
+
+  NOTE: The AdSense script uses crossorigin="anonymous" and
+  async to avoid render-blocking. Do not add defer — AdSense
+  requires async specifically.
+
+  Usage: {% include head-adsense.html %}
+{% endcomment %}
+
+{% assign ads = site.data.integrations.google_adsense %}
+
+{% if ads.enabled and ads.publisher_id != "" and ads.publisher_id != "ca-pub-XXXXXXXXXXXXXXXX" %}
+<!-- Google AdSense -->
+<script async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ads.publisher_id }}"
+  crossorigin="anonymous"></script>
+{% if ads.auto_ads %}
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "{{ ads.publisher_id }}",
+    enable_page_level_ads: true
+  });
+</script>
+{% endif %}
+<!-- End Google AdSense -->
+{% endif %}

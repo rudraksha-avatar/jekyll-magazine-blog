@@ -18,12 +18,14 @@
     {% if start_page < 1 %}{% assign start_page = 1 %}{% endif %}
     {% assign end_page = start_page | plus: 4 %}
     {% if end_page > paginator.total_pages %}{% assign end_page = paginator.total_pages %}{% endif %}
+    {% assign start_page_adj = end_page | minus: 4 %}
+    {% if start_page_adj > start_page %}{% assign start_page = start_page_adj %}{% endif %}
+    {% if start_page < 1 %}{% assign start_page = 1 %}{% endif %}
 
     {% for i in (start_page..end_page) %}
     <li class="pagination-item {% if i == paginator.page %}pagination-item--active{% endif %}">
       {% if i == 1 %}
-        {% assign page_path = paginator.first_page_path | default: page.url %}
-        <a href="{{ page_path | relative_url }}" class="pagination-link" {% if i == paginator.page %}aria-current="page"{% endif %}>{{ i }}</a>
+        <a href="{{ paginator.first_page_path | default: page.url | relative_url }}" class="pagination-link" {% if i == paginator.page %}aria-current="page"{% endif %}>{{ i }}</a>
       {% else %}
         <a href="{{ paginator.page_path | replace: ':num', i | relative_url }}" class="pagination-link" {% if i == paginator.page %}aria-current="page"{% endif %}>{{ i }}</a>
       {% endif %}

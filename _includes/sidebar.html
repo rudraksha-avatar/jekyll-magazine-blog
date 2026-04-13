@@ -36,15 +36,16 @@
   <ul class="sidebar-category-list">
     {% assign cats = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
     {% for cat in cats %}
+    {% if cat != "" %}
     {% assign cat_posts = site.posts | where_exp: "p", "p.categories contains cat" %}
-    {% assign cat_slug = cat | slugify %}
-    {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
+    {% include cat_url.html cat=cat %}
     <li>
-      <a href="{{ cat_path | relative_url }}" class="sidebar-category-link">
+      <a href="{{ cat_url }}">
         {{ cat | capitalize }}
         <span class="sidebar-category-count">{{ cat_posts.size }}</span>
       </a>
     </li>
+    {% endif %}
     {% endfor %}
   </ul>
 </div>
@@ -55,9 +56,10 @@
   <div class="sidebar-tag-cloud">
     {% assign tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
     {% for tag in tags %}
-    {% assign tag_slug = tag | slugify %}
-    {% assign tag_path = '/tag/' | append: tag_slug | append: '/' %}
-    <a href="{{ tag_path | relative_url }}" class="tag-badge">{{ tag }}</a>
+    {% if tag != "" %}
+    {% include tag_url.html tag=tag %}
+    <a href="{{ tag_url }}" class="tag-badge">{{ tag }}</a>
+    {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -88,7 +90,7 @@
     >
     <button type="submit" class="sidebar-subscribe-btn">Subscribe</button>
   </form>
-  <a href="{{ site.social.rss | default: '/feed.xml' | relative_url }}" class="sidebar-rss-link" aria-label="RSS feed">
+  <a href="{{ site.social.rss | default: '/feed.xml' | relative_url }}" class="sidebar-rss-link" aria-label="Subscribe via RSS feed">
     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
     RSS Feed
   </a>

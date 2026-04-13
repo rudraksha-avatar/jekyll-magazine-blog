@@ -1,7 +1,10 @@
+---
+---
 User-agent: *
 Allow: /
 
-Disallow: /assets/
 Disallow: /search/
+Disallow: /search.json
 
-Sitemap: https://thepulse.example.com/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml
+

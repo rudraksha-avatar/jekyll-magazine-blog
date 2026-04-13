@@ -1,22 +1,21 @@
 {% assign cat = include.category %}
-{% assign cat_posts = site.posts | where_exp: "p", "p.categories contains cat" | limit: 3 %}
+{% assign cat_posts = site.posts | where_exp: "p", "p.categories contains cat" %}
 {% assign cat_desc = site.category_descriptions[cat] %}
 
 {% if cat_posts.size > 0 %}
+{% include cat_url.html cat=cat %}
 <section class="category-section" aria-label="{{ cat | capitalize }} articles">
-  {% assign cat_slug = cat | slugify %}
-  {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
   <div class="section-header">
     <h2 class="section-title">
-      <a href="{{ cat_path | relative_url }}">{{ cat | capitalize }}</a>
+      <a href="{{ cat_url }}">{{ cat | capitalize }}</a>
     </h2>
     {% if cat_desc %}
     <p class="section-description">{{ cat_desc }}</p>
     {% endif %}
-    <a href="{{ cat_path | relative_url }}" class="section-more-link">View all &rarr;</a>
+    <a href="{{ cat_url }}" class="section-more-link" aria-label="View all {{ cat | capitalize }} articles">View all &rarr;</a>
   </div>
   <div class="posts-grid">
-    {% for post in cat_posts %}
+    {% for post in cat_posts limit:3 %}
     {% include post_card.html post=post %}
     {% endfor %}
   </div>

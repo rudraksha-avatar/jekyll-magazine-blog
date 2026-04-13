@@ -98,7 +98,7 @@
       Array.isArray(item.tags) ? item.tags.join(' ') : (item.tags || '')
     ];
     return fields.some(function (f) {
-      return f && f.toLowerCase().includes(token);
+      return f && f.toLowerCase().indexOf(token) !== -1;
     });
   }
 
@@ -177,7 +177,9 @@
     var escaped = escapeHtml(text);
     var tokens = query.trim().split(/\s+/).filter(Boolean);
     tokens.forEach(function (token) {
-      var re = new RegExp('(' + escapeRegex(token) + ')', 'gi');
+      // Build a safe regex from the token
+      var safeToken = token.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+      var re = new RegExp('(' + safeToken + ')', 'gi');
       escaped = escaped.replace(re, '<mark class="search-highlight">$1</mark>');
     });
     return escaped;
@@ -189,10 +191,6 @@
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
-  }
-
-  function escapeRegex(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   function slugify(str) {

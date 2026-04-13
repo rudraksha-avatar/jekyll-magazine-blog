@@ -6,26 +6,42 @@
         <a href="{{ '/' | relative_url }}" class="site-logo-link" aria-label="{{ site.title }} - Home">
           <span class="site-title">{{ site.title }}</span>
           {% if site.tagline %}
-          <span class="site-tagline">{{ site.tagline }}</span>
+          <span class="site-tagline" aria-hidden="true">{{ site.tagline }}</span>
           {% endif %}
         </a>
       </div>
 
       <nav class="site-nav" role="navigation" aria-label="Main navigation" id="site-nav">
-        <ul class="nav-list">
+        <ul class="nav-list" role="list">
           {% for item in site.data.navigation.header %}
-          <li class="nav-item {% if page.url == item.url %}active{% endif %}">
-            <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a>
+          {% assign is_active = false %}
+          {% if page.url == item.url %}
+            {% assign is_active = true %}
+          {% elsif item.url != '/' and page.url contains item.url %}
+            {% assign is_active = true %}
+          {% endif %}
+          <li class="nav-item{% if is_active %} active{% endif %}">
+            <a
+              href="{{ item.url | relative_url }}"
+              {% if is_active %}aria-current="page"{% endif %}
+            >{{ item.title }}</a>
           </li>
           {% endfor %}
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a href="{{ '/search/' | relative_url }}" class="header-search-btn" aria-label="Search">
+        <a href="{{ '/search/' | relative_url }}" class="header-search-btn" aria-label="Search the site">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </a>
-        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle navigation menu"
+          type="button"
+        >
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>

@@ -3,30 +3,43 @@
     <li class="breadcrumb-item">
       <a href="{{ '/' | relative_url }}">Home</a>
     </li>
+
     {% if page.layout == 'post' %}
-    <li class="breadcrumb-item">
-      <a href="{{ '/blog/' | relative_url }}">Blog</a>
-    </li>
-    {% if page.categories.first %}
-    {% assign bc_cat_slug = page.categories.first | slugify %}
-    {% assign bc_cat_path = '/category/' | append: bc_cat_slug | append: '/' %}
-    <li class="breadcrumb-item">
-      <a href="{{ bc_cat_path | relative_url }}">{{ page.categories.first | capitalize }}</a>
-    </li>
-    {% endif %}
-    <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | truncatewords: 8 }}</li>
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      </li>
+      {% if page.categories.first %}
+        {% include cat_url.html cat=page.categories.first %}
+        <li class="breadcrumb-item">
+          <a href="{{ cat_url }}">{{ page.categories.first | capitalize }}</a>
+        </li>
+      {% endif %}
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | truncatewords: 8 }}</li>
+
     {% elsif page.layout == 'category' %}
-    <li class="breadcrumb-item">
-      <a href="{{ '/blog/' | relative_url }}">Blog</a>
-    </li>
-    <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | remove: "Category: " | capitalize }}</li>
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | remove: "Category: " | capitalize }}</li>
+
     {% elsif page.layout == 'tag' %}
-    <li class="breadcrumb-item">
-      <a href="{{ '/blog/' | relative_url }}">Blog</a>
-    </li>
-    <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | remove: "Tag: " }}</li>
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | remove: "Tag: " }}</li>
+
+    {% elsif page.layout == 'author' %}
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title }}</li>
+
+    {% elsif page.layout == 'blog' %}
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">Blog</li>
+
     {% else %}
-    <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title }}</li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title }}</li>
     {% endif %}
+
   </ol>
 </nav>

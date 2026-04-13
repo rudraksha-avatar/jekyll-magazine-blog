@@ -1,0 +1,24 @@
+{% comment %}
+  head-integrations.html
+  ----------------------
+  Master include for all third-party <head> integrations.
+  Called once from _layouts/default.html — do not call
+  individual integration includes separately.
+
+  Load order (intentional):
+    1. GTM head script  — must be as early as possible
+    2. GA4              — only if not using GTM for GA4
+    3. AdSense          — async, non-blocking
+    4. Verification     — passive meta tags, order irrelevant
+
+  All services are controlled by _data/integrations.yml.
+  Nothing loads unless its enabled flag is true AND its ID
+  is set to a real value (not the placeholder default).
+
+  Usage: {% include head-integrations.html %}
+{% endcomment %}
+
+{% include head-gtm.html %}
+{% include head-analytics.html %}
+{% include head-adsense.html %}
+{% include head-verification.html %}

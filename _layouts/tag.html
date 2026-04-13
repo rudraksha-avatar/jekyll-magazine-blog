@@ -4,17 +4,39 @@ layout: default
 
 {% assign tag_name = page.tag | default: page.title | remove: "Tag: " %}
 
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ site.url }}/blog/"},
+    {"@type": "ListItem", "position": 3, "name": {{ tag_name | jsonify }}, "item": "{{ page.url | absolute_url }}"}
+  ]
+}
+</script>
+
 <div class="container archive-layout">
 
+  {% if site.data.settings.show_breadcrumbs %}
+  {% include breadcrumbs.html %}
+  {% endif %}
+
   <header class="archive-header tag-header">
-    <div class="archive-header-inner">
-      <span class="archive-label">Tag</span>
-      <h1 class="archive-title">{{ tag_name }}</h1>
-      {% if paginator.total_posts %}
-      <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %} tagged with "{{ tag_name }}"</p>
-      {% endif %}
-    </div>
+    <span class="archive-label">Tag</span>
+    <h1 class="archive-title">{{ tag_name }}</h1>
+    {% if paginator.total_posts %}
+    <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %} tagged with &ldquo;{{ tag_name }}&rdquo;</p>
+    {% endif %}
   </header>
+
+  <!-- Ad: Top Banner Placeholder -->
+  {% if site.data.settings.show_ad_placeholders %}
+  <div class="ad-placeholder ad-top-banner" aria-hidden="true">
+    <span>Advertisement</span>
+  </div>
+  {% endif %}
 
   {% if paginator.posts.size > 0 %}
   <div class="posts-grid">

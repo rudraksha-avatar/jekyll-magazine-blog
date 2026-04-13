@@ -20,9 +20,8 @@
     {% if p.categories.size > 0 %}
     <div class="post-card-categories">
       {% for cat in p.categories limit:1 %}
-      {% assign cat_slug = cat | slugify %}
-      {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
-      <a href="{{ cat_path | relative_url }}" class="category-badge">{{ cat | capitalize }}</a>
+      {% include cat_url.html cat=cat %}
+      <a href="{{ cat_url }}" class="category-badge">{{ cat | capitalize }}</a>
       {% endfor %}
     </div>
     {% endif %}

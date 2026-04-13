@@ -200,7 +200,7 @@
 
   &:hover {
     box-shadow: $shadow-sm;
-    border-color: darken($color-border, 6%);
+    border-color: #d1d5db;
   }
 
   @media (max-width: $bp-sm) {
@@ -324,7 +324,7 @@
 
 .search-highlight {
   background: rgba($color-accent, 0.15);
-  color: darken($color-accent, 5%);
+  color: #d42f3b;
   border-radius: 2px;
   padding: 0 2px;
   font-style: normal;

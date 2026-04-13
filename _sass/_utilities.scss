@@ -38,7 +38,7 @@
 // (also scoped inside .prose — this covers standalone usage)
 mark {
   background: rgba($color-accent, 0.15);
-  color: darken($color-accent, 10%);
+  color: $color-accent-hover;
   padding: 1px 4px;
   border-radius: 3px;
 }
@@ -85,14 +85,11 @@ mark {
 
 // ============================================================
 // Policy / Legal Page Content
-// Uses the shared .prose system — just adds the date stamp
-// and constrains width for comfortable reading.
+// Width constraint — prose styles come from _prose.scss
 // ============================================================
 
 .policy-content {
   max-width: $container-narrow;
-  font-size: $text-base;
-  line-height: $leading-relaxed;
 
   .policy-date {
     font-size: $text-sm;

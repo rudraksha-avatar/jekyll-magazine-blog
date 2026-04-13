@@ -2,7 +2,23 @@
 layout: default
 ---
 
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ site.url }}/blog/"}
+  ]
+}
+</script>
+
 <div class="container archive-layout">
+
+  {% if site.data.settings.show_breadcrumbs %}
+  {% include breadcrumbs.html %}
+  {% endif %}
 
   <header class="archive-header">
     <span class="archive-label">All Articles</span>

@@ -1,0 +1,22 @@
+{% comment %}
+  body-gtm.html
+  -------------
+  Google Tag Manager — <body> noscript fallback iframe.
+  Must be placed immediately after the opening <body> tag.
+  Loaded only when google_tag_manager.enabled is true in
+  _data/integrations.yml.
+
+  This snippet ensures GTM still fires basic events for users
+  who have JavaScript disabled (e.g. page views via image pixel).
+
+  Usage: {% include body-gtm.html %}
+{% endcomment %}
+
+{% assign gtm = site.data.integrations.google_tag_manager %}
+
+{% if gtm.enabled and gtm.container_id != "" and gtm.container_id != "GTM-XXXXXXX" %}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ gtm.container_id }}"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager" aria-hidden="true"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% endif %}

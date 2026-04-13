@@ -17,3 +17,8 @@ end
 gem "webrick", "~> 1.8"
 gem "csv"
 gem "base64"
+
+# Windows timezone support
+gem "tzinfo", "~> 2.0"
+gem "tzinfo-data", platforms: [:windows, :jruby]
+gem "wdm", "~> 0.1", platforms: [:windows]
