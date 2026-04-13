@@ -1,0 +1,130 @@
+// ============================================================
+// Utilities
+// ============================================================
+
+// Text
+.text-center { text-align: center; }
+.text-muted   { color: $color-text-muted; }
+.text-sm      { font-size: $text-sm; }
+.text-xs      { font-size: $text-xs; }
+
+// Spacing
+.mt-0  { margin-top: 0; }
+.mb-0  { margin-bottom: 0; }
+.mt-4  { margin-top: $space-4; }
+.mb-4  { margin-bottom: $space-4; }
+.mt-8  { margin-top: $space-8; }
+.mb-8  { margin-bottom: $space-8; }
+
+// Display
+.d-none   { display: none; }
+.d-block  { display: block; }
+.d-flex   { display: flex; }
+
+// Divider
+.divider {
+  border: none;
+  border-top: 1px solid $color-border;
+  margin: $space-8 0;
+}
+
+// Skip link (already in base, kept for reference)
+// .sr-only defined in _base.scss
+
+// Highlight / mark
+mark {
+  background: rgba($color-accent, 0.15);
+  color: $color-accent;
+  padding: 0 3px;
+  border-radius: 2px;
+}
+
+// Responsive image
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+// Visually hidden but focusable
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Truncate text
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Section spacing
+.section-spacing {
+  padding: $space-12 0;
+}
+
+// Policy page specific
+.policy-content {
+  max-width: $container-narrow;
+
+  h2 {
+    font-size: $text-2xl;
+    font-weight: $font-bold;
+    margin-top: $space-10;
+    margin-bottom: $space-4;
+    padding-top: $space-4;
+    border-top: 1px solid $color-border;
+
+    &:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+
+  h3 {
+    font-size: $text-xl;
+    font-weight: $font-semi;
+    margin-top: $space-6;
+    margin-bottom: $space-3;
+  }
+
+  p {
+    margin-bottom: $space-4;
+    line-height: $leading-relaxed;
+    color: $color-text;
+  }
+
+  ul, ol {
+    margin-bottom: $space-4;
+    padding-left: $space-6;
+    line-height: $leading-relaxed;
+
+    li {
+      margin-bottom: $space-2;
+    }
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  .policy-date {
+    font-size: $text-sm;
+    color: $color-text-muted;
+    margin-bottom: $space-8;
+    padding-bottom: $space-4;
+    border-bottom: 1px solid $color-border;
+  }
+
+  a {
+    color: $color-accent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}

@@ -1,0 +1,537 @@
+// ============================================================
+// Article / Post Single Page Styles
+// ============================================================
+
+.post-single {
+  padding-bottom: $space-16;
+}
+
+// Post Header
+.post-header {
+  margin-bottom: $space-8;
+}
+
+.post-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin-bottom: $space-4;
+}
+
+.post-title {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  letter-spacing: -0.02em;
+  margin-bottom: $space-4;
+
+  @media (max-width: $bp-md) {
+    font-size: $text-3xl;
+  }
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-2xl;
+  }
+}
+
+.post-subtitle {
+  font-size: $text-xl;
+  color: $color-text-muted;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-5;
+  font-weight: $font-normal;
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-lg;
+  }
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-4;
+  font-size: $text-sm;
+  color: $color-text-muted;
+  padding: $space-4 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.post-meta-date {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.post-updated {
+  color: $color-text-light;
+  font-size: $text-xs;
+}
+
+.post-meta-reading {
+  color: $color-text-light;
+}
+
+// Featured Image
+.post-featured-image {
+  margin: $space-8 0;
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: $radius-lg;
+  }
+
+  figcaption {
+    font-size: $text-sm;
+    color: $color-text-muted;
+    text-align: center;
+    padding: $space-2 0;
+    font-style: italic;
+  }
+}
+
+// TOC
+.toc-wrapper {
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $space-5 $space-6;
+  margin: $space-8 0;
+
+  #markdown-toc {
+    list-style: decimal;
+    padding-left: $space-5;
+    margin: 0;
+
+    li {
+      margin-bottom: $space-2;
+      font-size: $text-sm;
+      line-height: $leading-relaxed;
+
+      a {
+        color: $color-text-muted;
+
+        &:hover {
+          color: $color-accent;
+        }
+      }
+
+      ul, ol {
+        list-style: lower-alpha;
+        padding-left: $space-5;
+        margin-top: $space-2;
+      }
+    }
+  }
+
+  &::before {
+    content: "Table of Contents";
+    display: block;
+    font-size: $text-sm;
+    font-weight: $font-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text;
+    margin-bottom: $space-3;
+  }
+}
+
+// Post Content Body
+.post-content {
+  font-family: $font-serif;
+  font-size: $text-lg;
+  line-height: $leading-loose;
+  color: $color-text;
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-base;
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: $font-sans;
+    font-weight: $font-bold;
+    line-height: $leading-tight;
+    margin-top: $space-10;
+    margin-bottom: $space-4;
+    color: $color-text;
+  }
+
+  h2 { font-size: $text-3xl; }
+  h3 { font-size: $text-2xl; }
+  h4 { font-size: $text-xl; }
+  h5 { font-size: $text-lg; }
+  h6 { font-size: $text-base; }
+
+  p {
+    margin-bottom: $space-6;
+  }
+
+  a {
+    color: $color-accent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+  }
+
+  ul, ol {
+    margin-bottom: $space-6;
+    padding-left: $space-6;
+
+    li {
+      margin-bottom: $space-2;
+      line-height: $leading-relaxed;
+    }
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  blockquote {
+    border-left: 4px solid $color-accent;
+    padding: $space-4 $space-6;
+    margin: $space-8 0;
+    background: $color-bg-alt;
+    border-radius: 0 $radius-md $radius-md 0;
+
+    p {
+      font-size: $text-xl;
+      font-style: italic;
+      color: $color-text;
+      margin: 0;
+    }
+
+    cite {
+      display: block;
+      font-size: $text-sm;
+      color: $color-text-muted;
+      margin-top: $space-3;
+      font-style: normal;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: $radius-md;
+    margin: $space-6 0;
+  }
+
+  figure {
+    margin: $space-8 0;
+
+    figcaption {
+      font-size: $text-sm;
+      color: $color-text-muted;
+      text-align: center;
+      margin-top: $space-2;
+      font-style: italic;
+      font-family: $font-sans;
+    }
+  }
+
+  // Responsive tables
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: $space-8 0;
+    font-size: $text-sm;
+    font-family: $font-sans;
+    overflow-x: auto;
+    display: block;
+
+    th, td {
+      padding: $space-3 $space-4;
+      text-align: left;
+      border-bottom: 1px solid $color-border;
+    }
+
+    th {
+      font-weight: $font-semi;
+      background: $color-bg-alt;
+      color: $color-text;
+    }
+
+    tr:hover td {
+      background: $color-bg-alt;
+    }
+  }
+
+  // Code
+  code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.875em;
+    background: $color-bg-alt;
+    border: 1px solid $color-border;
+    padding: 2px 6px;
+    border-radius: $radius-sm;
+    color: $color-accent;
+  }
+
+  pre {
+    background: $color-bg-dark;
+    border-radius: $radius-md;
+    padding: $space-5 $space-6;
+    overflow-x: auto;
+    margin: $space-8 0;
+    font-size: $text-sm;
+    line-height: $leading-relaxed;
+
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #e2e8f0;
+      font-size: inherit;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid $color-border;
+    margin: $space-10 0;
+  }
+
+  // Responsive embeds
+  .embed-responsive {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: $radius-md;
+    margin: $space-8 0;
+
+    iframe, embed, object, video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  iframe {
+    max-width: 100%;
+    border-radius: $radius-md;
+  }
+}
+
+// Post Tags
+.post-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin: $space-8 0;
+
+  .tags-label {
+    font-size: $text-sm;
+    font-weight: $font-semi;
+    color: $color-text-muted;
+  }
+}
+
+// Page Content (static pages)
+.page-header {
+  margin-bottom: $space-8;
+  padding-bottom: $space-6;
+  border-bottom: 1px solid $color-border;
+}
+
+.page-title {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  margin-bottom: $space-3;
+
+  @media (max-width: $bp-md) {
+    font-size: $text-3xl;
+  }
+}
+
+.page-subtitle {
+  font-size: $text-xl;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.page-body {
+  font-size: $text-lg;
+  line-height: $leading-loose;
+  color: $color-text;
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-base;
+  }
+
+  h2 {
+    font-size: $text-2xl;
+    font-weight: $font-bold;
+    margin-top: $space-10;
+    margin-bottom: $space-4;
+  }
+
+  h3 {
+    font-size: $text-xl;
+    font-weight: $font-bold;
+    margin-top: $space-8;
+    margin-bottom: $space-3;
+  }
+
+  p { margin-bottom: $space-5; }
+
+  ul, ol {
+    margin-bottom: $space-5;
+    padding-left: $space-6;
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  li { margin-bottom: $space-2; }
+
+  a {
+    color: $color-accent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  strong { font-weight: $font-bold; }
+}
+
+// Contact Form
+.contact-form {
+  max-width: 600px;
+  margin-top: $space-8;
+}
+
+.form-group {
+  margin-bottom: $space-5;
+
+  label {
+    display: block;
+    font-size: $text-sm;
+    font-weight: $font-medium;
+    color: $color-text;
+    margin-bottom: $space-2;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: $space-3 $space-4;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: $text-base;
+    color: $color-text;
+    background: $color-bg;
+    transition: border-color $transition-fast;
+
+    &:focus {
+      outline: none;
+      border-color: $color-accent;
+      box-shadow: 0 0 0 3px rgba($color-accent, 0.1);
+    }
+
+    &::placeholder {
+      color: $color-text-light;
+    }
+  }
+
+  textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-3 $space-8;
+  background: $color-accent;
+  color: #fff;
+  font-size: $text-base;
+  font-weight: $font-semi;
+  border-radius: $radius-sm;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-accent-hover;
+    color: #fff;
+  }
+}
+
+// 404 Page
+.error-page {
+  text-align: center;
+  padding: $space-24 0;
+
+  .error-code {
+    font-size: 8rem;
+    font-weight: $font-bold;
+    color: $color-border;
+    line-height: 1;
+    margin-bottom: $space-4;
+  }
+
+  .error-title {
+    font-size: $text-3xl;
+    font-weight: $font-bold;
+    margin-bottom: $space-4;
+  }
+
+  .error-message {
+    font-size: $text-lg;
+    color: $color-text-muted;
+    max-width: 480px;
+    margin: 0 auto $space-8;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: $space-4;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: $space-3 $space-6;
+    background: $color-accent;
+    color: #fff;
+    font-weight: $font-semi;
+    border-radius: $radius-sm;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: $color-accent-hover;
+      color: #fff;
+    }
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: $space-3 $space-6;
+    background: $color-bg-alt;
+    color: $color-text;
+    font-weight: $font-semi;
+    border-radius: $radius-sm;
+    border: 1px solid $color-border;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: $color-border;
+    }
+  }
+}

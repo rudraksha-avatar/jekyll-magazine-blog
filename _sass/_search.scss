@@ -1,0 +1,142 @@
+// ============================================================
+// Search Page Styles
+// ============================================================
+
+.search-page {
+  padding: $space-10 0 $space-16;
+}
+
+.search-header {
+  margin-bottom: $space-8;
+}
+
+.search-title {
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  margin-bottom: $space-4;
+}
+
+.search-form-wrap {
+  max-width: 600px;
+  margin-bottom: $space-8;
+}
+
+.search-form {
+  display: flex;
+  gap: $space-2;
+}
+
+.search-input {
+  flex: 1;
+  padding: $space-3 $space-4;
+  border: 2px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $text-base;
+  color: $color-text;
+  background: $color-bg;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+
+  &::placeholder {
+    color: $color-text-light;
+  }
+}
+
+.search-btn {
+  padding: $space-3 $space-5;
+  background: $color-accent;
+  color: #fff;
+  font-size: $text-sm;
+  font-weight: $font-semi;
+  border-radius: $radius-sm;
+  transition: background $transition-fast;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+.search-results-info {
+  font-size: $text-sm;
+  color: $color-text-muted;
+  margin-bottom: $space-6;
+
+  strong {
+    color: $color-text;
+  }
+}
+
+.search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.search-result-item {
+  padding: $space-5;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  transition: box-shadow $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-sm;
+  }
+}
+
+.search-result-category {
+  margin-bottom: $space-2;
+}
+
+.search-result-title {
+  font-size: $text-xl;
+  font-weight: $font-bold;
+  margin-bottom: $space-2;
+
+  a {
+    color: $color-text;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.search-result-excerpt {
+  font-size: $text-sm;
+  color: $color-text-muted;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-3;
+}
+
+.search-result-meta {
+  font-size: $text-xs;
+  color: $color-text-light;
+  display: flex;
+  gap: $space-3;
+  flex-wrap: wrap;
+}
+
+.search-no-results {
+  text-align: center;
+  padding: $space-16;
+  color: $color-text-muted;
+
+  p {
+    font-size: $text-lg;
+    margin-bottom: $space-4;
+  }
+}
+
+.search-highlight {
+  background: rgba($color-accent, 0.15);
+  color: $color-accent;
+  border-radius: 2px;
+  padding: 0 2px;
+}

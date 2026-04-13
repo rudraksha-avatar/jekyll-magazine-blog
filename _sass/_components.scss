@@ -1,0 +1,907 @@
+// ============================================================
+// Badges
+// ============================================================
+
+.category-badge {
+  display: inline-block;
+  padding: 3px $space-3;
+  background: $color-accent;
+  color: #fff;
+  font-size: $text-xs;
+  font-weight: $font-semi;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: $radius-sm;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-accent-hover;
+    color: #fff;
+  }
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 3px $space-3;
+  background: $color-bg-alt;
+  color: $color-text-muted;
+  font-size: $text-xs;
+  font-weight: $font-medium;
+  border-radius: $radius-full;
+  border: 1px solid $color-border;
+  transition: background $transition-fast, color $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    background: $color-primary;
+    color: #fff;
+    border-color: $color-primary;
+  }
+}
+
+.featured-label {
+  display: inline-block;
+  padding: 3px $space-3;
+  background: #fbbf24;
+  color: #1c1c1e;
+  font-size: $text-xs;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: $radius-sm;
+  margin-bottom: $space-2;
+}
+
+// ============================================================
+// Post Card
+// ============================================================
+
+.post-card {
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: box-shadow $transition-base, transform $transition-base;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+.post-card-image-link {
+  display: block;
+  overflow: hidden;
+}
+
+.post-card-image-wrap {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: $color-bg-alt;
+}
+
+.post-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $transition-slow;
+
+  .post-card:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.post-card-body {
+  padding: $space-5;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.post-card-categories {
+  margin-bottom: $space-3;
+}
+
+.post-card-title {
+  font-size: $text-lg;
+  font-weight: $font-bold;
+  line-height: $leading-snug;
+  margin-bottom: $space-3;
+
+  a {
+    color: $color-text;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &.post-card-title--lg {
+    font-size: $text-2xl;
+  }
+}
+
+.post-card-excerpt {
+  font-size: $text-sm;
+  color: $color-text-muted;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-4;
+  flex: 1;
+}
+
+.post-card-footer {
+  margin-top: auto;
+  padding-top: $space-4;
+  border-top: 1px solid $color-border-light;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  flex-wrap: wrap;
+  font-size: $text-xs;
+  color: $color-text-muted;
+
+  a {
+    color: $color-text-muted;
+    font-weight: $font-medium;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.post-card-date,
+.post-card-reading {
+  color: $color-text-light;
+}
+
+// Featured card variant
+.post-card--featured {
+  .post-card-image-wrap {
+    aspect-ratio: 16/9;
+  }
+}
+
+// ============================================================
+// Posts Grid
+// ============================================================
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-6;
+  margin-bottom: $space-10;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.posts-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// Archive Header
+// ============================================================
+
+.archive-header {
+  padding: $space-12 0 $space-8;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $space-10;
+}
+
+.archive-label {
+  display: inline-block;
+  font-size: $text-xs;
+  font-weight: $font-semi;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-accent;
+  margin-bottom: $space-2;
+}
+
+.archive-title {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  margin-bottom: $space-3;
+
+  @media (max-width: $bp-md) {
+    font-size: $text-3xl;
+  }
+}
+
+.archive-description {
+  font-size: $text-lg;
+  color: $color-text-muted;
+  max-width: 600px;
+  margin-bottom: $space-3;
+}
+
+.archive-count {
+  font-size: $text-sm;
+  color: $color-text-light;
+  margin: 0;
+}
+
+// ============================================================
+// Section Headers
+// ============================================================
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-6;
+  padding-bottom: $space-4;
+  border-bottom: 2px solid $color-border;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+
+  a {
+    color: $color-text;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.section-description {
+  font-size: $text-sm;
+  color: $color-text-muted;
+  flex: 1;
+  margin: 0;
+}
+
+.section-more-link {
+  font-size: $text-sm;
+  font-weight: $font-semi;
+  color: $color-accent;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+}
+
+.category-section {
+  margin-bottom: $space-16;
+}
+
+// ============================================================
+// Breadcrumbs
+// ============================================================
+
+.breadcrumbs {
+  padding: $space-4 0;
+  margin-bottom: $space-6;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-2;
+  font-size: $text-sm;
+  color: $color-text-muted;
+
+  li + li::before {
+    content: "/";
+    color: $color-border;
+    margin-right: $space-2;
+  }
+
+  a {
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.breadcrumb-current {
+  color: $color-text-light;
+}
+
+// ============================================================
+// Pagination
+// ============================================================
+
+.pagination {
+  margin: $space-10 0;
+}
+
+.pagination-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  flex-wrap: wrap;
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 $space-3;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $color-text;
+  transition: background $transition-fast, color $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    background: $color-accent;
+    color: #fff;
+    border-color: $color-accent;
+  }
+}
+
+.pagination-item--active .pagination-link {
+  background: $color-accent;
+  color: #fff;
+  border-color: $color-accent;
+}
+
+.pagination-item--disabled .pagination-link {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ============================================================
+// Author Box
+// ============================================================
+
+.author-box {
+  display: flex;
+  gap: $space-5;
+  padding: $space-6;
+  background: $color-bg-alt;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  margin: $space-10 0;
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.author-box-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: $radius-full;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author-box-label {
+  font-size: $text-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+  margin-bottom: $space-1;
+}
+
+.author-box-name {
+  font-size: $text-lg;
+  font-weight: $font-bold;
+  margin-bottom: $space-1;
+
+  a {
+    color: $color-text;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.author-box-role {
+  font-size: $text-sm;
+  color: $color-accent;
+  font-weight: $font-medium;
+  margin-bottom: $space-3;
+}
+
+.author-box-bio {
+  font-size: $text-sm;
+  color: $color-text-muted;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-3;
+}
+
+.author-box-social {
+  display: flex;
+  gap: $space-3;
+}
+
+.social-link {
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $color-accent;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+}
+
+// ============================================================
+// Author Archive
+// ============================================================
+
+.author-archive-header {
+  padding: $space-12 0 $space-8;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $space-10;
+}
+
+.author-archive-profile {
+  display: flex;
+  gap: $space-6;
+  align-items: flex-start;
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.author-archive-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: $radius-full;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author-archive-info {
+  flex: 1;
+}
+
+.author-role {
+  font-size: $text-sm;
+  color: $color-accent;
+  font-weight: $font-medium;
+  margin-bottom: $space-3;
+}
+
+.author-bio {
+  font-size: $text-base;
+  color: $color-text-muted;
+  line-height: $leading-relaxed;
+  max-width: 600px;
+  margin-bottom: $space-4;
+}
+
+.author-social {
+  display: flex;
+  gap: $space-4;
+}
+
+// ============================================================
+// Share Buttons
+// ============================================================
+
+.share-buttons {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-5 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  margin: $space-8 0;
+  flex-wrap: wrap;
+}
+
+.share-label {
+  font-size: $text-sm;
+  font-weight: $font-semi;
+  color: $color-text-muted;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-2 $space-4;
+  border-radius: $radius-sm;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &--twitter {
+    background: #000;
+    color: #fff;
+  }
+
+  &--facebook {
+    background: #1877f2;
+    color: #fff;
+  }
+
+  &--linkedin {
+    background: #0a66c2;
+    color: #fff;
+  }
+}
+
+// ============================================================
+// Post Navigation
+// ============================================================
+
+.post-nav {
+  margin: $space-10 0;
+  padding: $space-6 0;
+  border-top: 1px solid $color-border;
+}
+
+.post-nav-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-6;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.post-nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  &.post-nav-next {
+    text-align: right;
+  }
+}
+
+.post-nav-label {
+  font-size: $text-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+  font-weight: $font-semi;
+}
+
+.post-nav-link {
+  font-size: $text-base;
+  font-weight: $font-semi;
+  color: $color-text;
+  line-height: $leading-snug;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+// ============================================================
+// Related Posts
+// ============================================================
+
+.related-posts {
+  margin-top: $space-12;
+  padding-top: $space-8;
+  border-top: 2px solid $color-border;
+}
+
+.related-posts-title {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  margin-bottom: $space-6;
+}
+
+.related-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-5;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// Sidebar Widgets
+// ============================================================
+
+.sidebar-widget {
+  margin-bottom: $space-8;
+  padding-bottom: $space-8;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.sidebar-widget-title {
+  font-size: $text-sm;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text;
+  margin-bottom: $space-4;
+  padding-bottom: $space-3;
+  border-bottom: 2px solid $color-accent;
+  display: inline-block;
+}
+
+.sidebar-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.sidebar-post-item {
+  .sidebar-post-link {
+    display: flex;
+    gap: $space-3;
+    align-items: flex-start;
+    color: $color-text;
+
+    &:hover .sidebar-post-title {
+      color: $color-accent;
+    }
+  }
+}
+
+.sidebar-post-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.sidebar-post-info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.sidebar-post-title {
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  line-height: $leading-snug;
+  transition: color $transition-fast;
+}
+
+.sidebar-post-date {
+  font-size: $text-xs;
+  color: $color-text-light;
+}
+
+.sidebar-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: $text-sm;
+    color: $color-text;
+    padding: $space-2 0;
+    border-bottom: 1px solid $color-border-light;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.sidebar-category-count {
+  font-size: $text-xs;
+  color: $color-text-light;
+  background: $color-bg-alt;
+  padding: 2px $space-2;
+  border-radius: $radius-full;
+}
+
+.sidebar-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+// ============================================================
+// Ad Placeholders
+// ============================================================
+
+.ad-placeholder {
+  background: $color-bg-alt;
+  border: 1px dashed $color-border;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-light;
+  font-size: $text-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  &.ad-top-banner {
+    height: 90px;
+    margin-bottom: $space-6;
+  }
+
+  &.ad-in-content {
+    height: 250px;
+    margin: $space-8 0;
+  }
+
+  &.ad-sidebar {
+    height: 250px;
+    margin-bottom: $space-6;
+  }
+}
+
+// ============================================================
+// Newsletter
+// ============================================================
+
+.newsletter-section {
+  background: $color-primary;
+  padding: $space-16 0;
+  margin-top: $space-16;
+}
+
+.newsletter-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-10;
+
+  @media (max-width: $bp-md) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.newsletter-title {
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  color: #fff;
+  margin-bottom: $space-2;
+}
+
+.newsletter-subtitle {
+  font-size: $text-base;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.newsletter-form {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 420px;
+}
+
+.newsletter-form-group {
+  display: flex;
+  gap: $space-2;
+  margin-bottom: $space-3;
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: $space-3 $space-4;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: $radius-sm;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: $text-sm;
+
+  &::placeholder {
+    color: rgba(255,255,255,0.5);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15);
+  }
+}
+
+.newsletter-btn {
+  padding: $space-3 $space-6;
+  background: $color-accent;
+  color: #fff;
+  font-size: $text-sm;
+  font-weight: $font-semi;
+  border-radius: $radius-sm;
+  transition: background $transition-fast;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+.newsletter-note {
+  font-size: $text-xs;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+
+  a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: underline;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// ============================================================
+// No Posts
+// ============================================================
+
+.no-posts {
+  text-align: center;
+  padding: $space-16;
+  color: $color-text-muted;
+  font-size: $text-lg;
+}
+
+// ============================================================
+// Author Avatar Small
+// ============================================================
+
+.author-avatar-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-full;
+  object-fit: cover;
+}
+
+.post-meta-author {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  a {
+    font-weight: $font-medium;
+    color: $color-text;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
