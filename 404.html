@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Page Not Found"
+description: "The page you're looking for doesn't exist."
+permalink: /404.html
+sitemap: false
+---
+
+<div class="container">
+  <div class="error-page">
+    <div class="error-code" aria-hidden="true">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-message">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+    <div class="error-actions">
+      <a href="{{ '/' | relative_url }}" class="btn-primary">Go Home</a>
+      <a href="{{ '/blog/' | relative_url }}" class="btn-secondary">Browse Articles</a>
+      <a href="{{ '/search/' | relative_url }}" class="btn-secondary">Search</a>
+    </div>
+  </div>
+</div>
