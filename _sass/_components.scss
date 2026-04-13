@@ -863,21 +863,18 @@
 .newsletter-section {
   background: $color-primary;
   padding: $section-pad-y 0;
-  // margin-top creates the gap between the last content section
-  // and the newsletter. Use the section-gap token so it matches
-  // the rhythm of other section separators.
-  // margin-bottom: 0 — footer follows directly with no gap.
-  margin-top: $section-gap;
+  // No margin-top — sections above (trending, post-layout, archive-layout)
+  // use padding-bottom to create their own breathing room. A margin-top here
+  // would land on the white body background and create a visible white strip.
+  margin-top: 0;
   margin-bottom: 0;
 
   @media (max-width: $bp-md) {
     padding: $section-pad-y-md 0;
-    margin-top: $section-gap-md;
   }
 
   @media (max-width: $bp-sm) {
     padding: $section-pad-y-sm 0;
-    margin-top: $section-gap-sm;
   }
 }
 
