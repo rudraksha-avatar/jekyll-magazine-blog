@@ -2,20 +2,24 @@
 // Homepage Styles
 // ============================================================
 
-// Hero Section
+// ---- Hero Section ------------------------------------------
+// Sits directly below the sticky header.
+// Bottom border + margin-bottom creates the visual break before
+// the ad placeholder / main content area.
+
 .hero-section {
   padding: $space-10 0 $space-8;
   border-bottom: 1px solid $color-border;
-  margin-bottom: $space-10;
+  margin-bottom: $section-gap;
 
   @media (max-width: $bp-md) {
     padding: $space-8 0 $space-6;
-    margin-bottom: $space-8;
+    margin-bottom: $section-gap-md;
   }
 
   @media (max-width: $bp-sm) {
     padding: $space-6 0 $space-5;
-    margin-bottom: $space-6;
+    margin-bottom: $section-gap-sm;
   }
 }
 
@@ -36,7 +40,6 @@
 }
 
 .hero-featured {
-  // The main featured post card
   .post-card {
     height: 100%;
   }
@@ -119,35 +122,49 @@
   }
 }
 
-// Latest Posts Section
+// ---- Latest Posts Section ----------------------------------
+
 .latest-section {
-  margin-bottom: $space-12;
-
-  @media (max-width: $bp-sm) {
-    margin-bottom: $space-8;
-  }
-}
-
-// Homepage Category Sections
-.homepage-categories {
-  margin-bottom: $space-6;
-}
-
-// Editor Picks / Trending
-// Full-bleed background: must sit outside .container
-.trending-section {
-  background: $color-bg-alt;
-  padding: $space-10 0;
-  margin: $space-12 0;
+  margin-bottom: $section-gap;
 
   @media (max-width: $bp-md) {
-    padding: $space-8 0;
-    margin: $space-10 0;
+    margin-bottom: $section-gap-md;
   }
 
   @media (max-width: $bp-sm) {
-    padding: $space-6 0;
-    margin: $space-8 0;
+    margin-bottom: $section-gap-sm;
+  }
+}
+
+// ---- Homepage Category Sections ----------------------------
+
+.homepage-categories {
+  // No extra bottom margin — category-section handles its own spacing
+  margin-bottom: 0;
+}
+
+// ---- Trending / Editor Picks -------------------------------
+// Full-bleed background section. Uses section tokens for
+// consistent vertical rhythm. No margin-top — the content
+// above (homepage-layout container) provides the gap.
+
+.trending-section {
+  background: $color-bg-alt;
+  padding: $section-pad-y 0;
+  // Margin-top creates the gap between the content grid above
+  // and this full-bleed section. Margin-bottom is 0 because
+  // the newsletter section (or footer) follows directly.
+  margin-top: $section-gap;
+  margin-bottom: 0;
+
+  @media (max-width: $bp-md) {
+    padding: $section-pad-y-md 0;
+    margin-top: $section-gap-md;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $section-pad-y-sm 0;
+    margin-top: $section-gap-sm;
   }
 }
 
@@ -207,16 +224,24 @@
   color: $color-text-light;
 }
 
-// Homepage with sidebar layout
+// ---- Homepage with sidebar layout --------------------------
+
 .homepage-layout {
   display: grid;
   grid-template-columns: 1fr $sidebar-width;
   gap: $space-10;
   align-items: start;
+  // Vertical padding for the main content+sidebar block
+  padding: $section-gap 0;
 
   @media (max-width: $bp-lg) {
     grid-template-columns: 1fr;
     gap: $space-6;
+    padding: $section-gap-md 0;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $section-gap-sm 0;
   }
 }
 

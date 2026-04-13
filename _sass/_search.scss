@@ -2,16 +2,14 @@
 // Search Page Styles
 // ============================================================
 
+// .search-layout (in _layout.scss) handles the outer padding.
+// .search-page only needs internal spacing between its children.
 .search-page {
-  padding: $space-10 0 $space-16;
-
-  @media (max-width: $bp-sm) {
-    padding: $space-8 0 $space-10;
-  }
+  // No extra padding — search-layout container handles it
 }
 
 .search-header {
-  margin-bottom: $space-8;
+  margin-bottom: $space-6;
 }
 
 .search-title {

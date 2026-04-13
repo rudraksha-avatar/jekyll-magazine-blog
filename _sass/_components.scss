@@ -174,7 +174,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $space-6;
-  margin-bottom: $space-10;
+  // No margin-bottom here — parent sections own their spacing
+  // to avoid double-margin stacking issues.
 
   @media (max-width: $bp-lg) {
     grid-template-columns: repeat(2, 1fr);
@@ -200,13 +201,13 @@
 // ============================================================
 
 .archive-header {
-  padding: $space-10 0 $space-8;
+  padding: $space-10 0 $space-6;
   border-bottom: 1px solid $color-border;
-  margin-bottom: $space-8;
+  margin-bottom: $ad-gap-y;
 
   @media (max-width: $bp-sm) {
-    padding: $space-8 0 $space-6;
-    margin-bottom: $space-6;
+    padding: $space-8 0 $space-5;
+    margin-bottom: $space-5;
   }
 }
 
@@ -299,10 +300,20 @@
 }
 
 .category-section {
-  margin-bottom: $space-12;
+  // Consistent spacing between stacked category sections
+  margin-bottom: $section-gap;
+
+  @media (max-width: $bp-md) {
+    margin-bottom: $section-gap-md;
+  }
 
   @media (max-width: $bp-sm) {
-    margin-bottom: $space-8;
+    margin-bottom: $section-gap-sm;
+  }
+
+  // Last category section — no extra bottom margin, parent handles it
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -311,8 +322,8 @@
 // ============================================================
 
 .breadcrumbs {
-  padding: $space-4 0;
-  margin-bottom: $space-4;
+  padding: $space-4 0 $space-3;
+  margin-bottom: 0;
 }
 
 .breadcrumb-list {
@@ -347,7 +358,7 @@
 // ============================================================
 
 .pagination {
-  margin: $space-8 0;
+  margin: $space-8 0 0;
 }
 
 .pagination-list {
@@ -402,12 +413,12 @@
   background: $color-bg-alt;
   border-radius: $radius-lg;
   border: 1px solid $color-border;
-  margin: $space-10 0;
+  margin: $space-8 0;
 
   @media (max-width: $bp-sm) {
     flex-direction: column;
     padding: $space-5;
-    margin: $space-8 0;
+    margin: $space-6 0;
   }
 }
 
@@ -585,12 +596,12 @@
 // ============================================================
 
 .post-nav {
-  margin: $space-10 0;
+  margin: $space-8 0;
   padding: $space-6 0;
   border-top: 1px solid $color-border;
 
   @media (max-width: $bp-sm) {
-    margin: $space-8 0;
+    margin: $space-6 0;
     padding: $space-5 0;
   }
 }
@@ -644,12 +655,12 @@
 // ============================================================
 
 .related-posts {
-  margin-top: $space-10;
+  margin-top: $space-8;
   padding-top: $space-8;
   border-top: 2px solid $color-border;
 
   @media (max-width: $bp-sm) {
-    margin-top: $space-8;
+    margin-top: $space-6;
     padding-top: $space-6;
   }
 }
@@ -743,7 +754,6 @@
   font-weight: $font-medium;
   line-height: $leading-snug;
   transition: color $transition-fast;
-  // Prevent long titles from overflowing sidebar
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -793,6 +803,7 @@
 // Ad Placeholders
 // ============================================================
 
+// Base ad placeholder — shared styles
 .ad-placeholder {
   background: $color-bg-alt;
   border: 1px dashed $color-border;
@@ -805,20 +816,43 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   width: 100%;
+  // Prevent overflow on any screen size
+  max-width: 100%;
+  overflow: hidden;
+}
 
-  &.ad-top-banner {
-    height: 90px;
-    margin-bottom: $space-6;
+// Top banner ad — sits between archive/post header and content grid.
+// Vertical rhythm: $ad-gap-y above (from archive-header margin-bottom)
+// and $ad-gap-y below via margin-bottom.
+.ad-placeholder.ad-top-banner {
+  height: 90px;
+  margin-top: 0;
+  margin-bottom: $ad-gap-y;
+
+  @media (max-width: $bp-sm) {
+    height: 60px;
+    margin-bottom: $space-5;
   }
+}
 
-  &.ad-in-content {
-    height: 250px;
-    margin: $space-8 0;
+// In-content ad — sits inside the article body between sections.
+.ad-placeholder.ad-in-content {
+  height: 250px;
+  margin: $space-8 0;
+
+  @media (max-width: $bp-sm) {
+    height: 200px;
+    margin: $space-6 0;
   }
+}
 
-  &.ad-sidebar {
-    height: 250px;
-    margin-bottom: $space-6;
+// Sidebar ad — sits at the top of the sidebar column.
+.ad-placeholder.ad-sidebar {
+  height: 250px;
+  margin-bottom: $space-6;
+
+  @media (max-width: $bp-sm) {
+    height: 200px;
   }
 }
 
@@ -828,20 +862,22 @@
 
 .newsletter-section {
   background: $color-primary;
-  padding: $space-16 0;
-  // Use margin-top to create space above newsletter when it follows content
-  // No margin-bottom — footer follows directly with no gap
-  margin-top: $space-16;
+  padding: $section-pad-y 0;
+  // margin-top creates the gap between the last content section
+  // and the newsletter. Use the section-gap token so it matches
+  // the rhythm of other section separators.
+  // margin-bottom: 0 — footer follows directly with no gap.
+  margin-top: $section-gap;
   margin-bottom: 0;
 
   @media (max-width: $bp-md) {
-    padding: $space-12 0;
-    margin-top: $space-12;
+    padding: $section-pad-y-md 0;
+    margin-top: $section-gap-md;
   }
 
   @media (max-width: $bp-sm) {
-    padding: $space-10 0;
-    margin-top: $space-10;
+    padding: $section-pad-y-sm 0;
+    margin-top: $section-gap-sm;
   }
 }
 

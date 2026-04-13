@@ -22,4 +22,9 @@ layout: default
     </aside>
   </div>
 </div>
+
+{% if site.data.settings.show_newsletter %}
+{% include newsletter.html %}
+{% else %}
 <div class="footer-spacer" aria-hidden="true"></div>
+{% endif %}

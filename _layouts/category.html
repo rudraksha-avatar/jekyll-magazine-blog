@@ -19,7 +19,7 @@ layout: default
 }
 </script>
 
-<div class="container">
+<div class="container archive-layout">
 
   <header class="archive-header category-header">
     <div class="archive-header-inner">
@@ -46,4 +46,9 @@ layout: default
   {% endif %}
 
 </div>
+
+{% if site.data.settings.show_newsletter %}
+{% include newsletter.html %}
+{% else %}
 <div class="footer-spacer" aria-hidden="true"></div>
+{% endif %}

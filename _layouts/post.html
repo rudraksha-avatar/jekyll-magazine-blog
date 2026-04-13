@@ -79,20 +79,18 @@ layout: default
 
 <article class="post-single" itemscope itemtype="https://schema.org/Article">
 
-  <!-- Ad: Top Banner Placeholder -->
-  {% if site.data.settings.show_ad_placeholders %}
-  <div class="container">
-    <div class="ad-placeholder ad-top-banner" aria-hidden="true">
-      <span>Advertisement</span>
-    </div>
-  </div>
-  {% endif %}
-
   <div class="container">
 
     <!-- Breadcrumbs -->
     {% if settings.show_breadcrumbs %}
     {% include breadcrumbs.html %}
+    {% endif %}
+
+    <!-- Ad: Top Banner Placeholder -->
+    {% if site.data.settings.show_ad_placeholders %}
+    <div class="ad-placeholder ad-top-banner" aria-hidden="true">
+      <span>Advertisement</span>
+    </div>
     {% endif %}
 
     <div class="post-layout">
@@ -207,4 +205,9 @@ layout: default
   </div><!-- /.container -->
 
 </article>
+
+{% if site.data.settings.show_newsletter %}
+{% include newsletter.html %}
+{% else %}
 <div class="footer-spacer" aria-hidden="true"></div>
+{% endif %}

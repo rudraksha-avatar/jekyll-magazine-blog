@@ -6,8 +6,6 @@ pagination:
   enabled: false
 ---
 
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
 {% assign featured_posts = site.posts | where: "featured", true | limit: 4 %}
 {% if featured_posts.size == 0 %}
   {% assign featured_posts = site.posts | limit: 4 %}

@@ -70,11 +70,16 @@ mark {
 }
 
 // ---- Section spacing ---------------------------------------
+// Generic utility for sections that need consistent vertical padding.
 .section-spacing {
-  padding: $space-12 0;
+  padding: $section-pad-y 0;
+
+  @media (max-width: $bp-md) {
+    padding: $section-pad-y-md 0;
+  }
 
   @media (max-width: $bp-sm) {
-    padding: $space-8 0;
+    padding: $section-pad-y-sm 0;
   }
 }
 
