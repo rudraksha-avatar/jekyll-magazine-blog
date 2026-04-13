@@ -1,130 +1,258 @@
 // ============================================================
-// Search Page Styles
+// Search Page
 // ============================================================
+// .search-layout (in _layout.scss) owns outer padding.
+// Everything here is internal component spacing.
 
-// .search-layout (in _layout.scss) handles the outer padding.
-// .search-page only needs internal spacing between its children.
-.search-page {
-  // No extra padding — search-layout container handles it
-}
+// ---- Page header -------------------------------------------
 
 .search-header {
   margin-bottom: $space-6;
-}
-
-.search-title {
-  font-size: $text-3xl;
-  font-weight: $font-bold;
-  margin-bottom: $space-4;
 
   @media (max-width: $bp-sm) {
-    font-size: $text-2xl;
+    margin-bottom: $space-5;
   }
 }
 
+.search-title {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  margin-bottom: $space-2;
+
+  @media (max-width: $bp-md) { font-size: $text-3xl; }
+  @media (max-width: $bp-sm) { font-size: $text-2xl; }
+}
+
+.search-subtitle {
+  font-size: $text-base;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+// ---- Search form -------------------------------------------
+
 .search-form-wrap {
-  max-width: 600px;
-  margin-bottom: $space-8;
+  max-width: 680px;
+  margin-bottom: $space-6;
 }
 
 .search-form {
   display: flex;
   gap: $space-2;
+  align-items: stretch;
 
   @media (max-width: $bp-sm) {
     flex-direction: column;
   }
 }
 
-.search-input {
+// Input wrapper — holds the icon + input together
+.search-input-wrap {
+  position: relative;
   flex: 1;
   min-width: 0;
-  padding: $space-3 $space-4;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-icon {
+  position: absolute;
+  left: $space-4;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-text-light;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  svg { display: block; }
+}
+
+.search-input {
+  width: 100%;
+  padding: $space-3 $space-4 $space-3 calc(#{$space-4} + 18px + #{$space-3});
   border: 2px solid $color-border;
   border-radius: $radius-sm;
   font-size: $text-base;
   color: $color-text;
   background: $color-bg;
-  transition: border-color $transition-fast;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  // Remove browser default search cancel button on webkit
+  -webkit-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: none;
     border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba($color-accent, 0.12);
   }
 
   &::placeholder {
     color: $color-text-light;
   }
+
+  // Remove the native clear (×) button in webkit
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  @media (max-width: $bp-sm) {
+    font-size: $text-base; // prevent iOS zoom on focus (must be ≥16px)
+    padding-top: $space-4;
+    padding-bottom: $space-4;
+  }
 }
 
 .search-btn {
-  padding: $space-3 $space-5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
   background: $color-accent;
   color: #fff;
   font-size: $text-sm;
   font-weight: $font-semi;
   border-radius: $radius-sm;
-  transition: background $transition-fast;
-  display: flex;
-  align-items: center;
-  gap: $space-2;
   white-space: nowrap;
   flex-shrink: 0;
+  transition: background $transition-fast;
+  // Minimum touch target
+  min-height: 44px;
 
   &:hover {
     background: $color-accent-hover;
   }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+  }
+
+  svg { flex-shrink: 0; }
+
+  @media (max-width: $bp-sm) {
+    width: 100%;
+    padding: $space-4 $space-6;
+  }
 }
+
+// ---- Status line -------------------------------------------
 
 .search-results-info {
   font-size: $text-sm;
   color: $color-text-muted;
-  margin-bottom: $space-6;
+  margin-bottom: $space-5;
+  min-height: 1.5em; // prevent layout shift
 
-  strong {
-    color: $color-text;
+  strong { color: $color-text; }
+}
+
+// ---- Idle / empty state ------------------------------------
+
+.search-idle {
+  text-align: center;
+  padding: $space-12 0 $space-8;
+  color: $color-text-muted;
+
+  svg {
+    display: block;
+    margin: 0 auto $space-4;
+    color: $color-border;
+  }
+
+  p {
+    font-size: $text-base;
+    margin-bottom: $space-5;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-8 0 $space-6;
   }
 }
+
+.search-idle-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  justify-content: center;
+}
+
+// ---- Results list ------------------------------------------
 
 .search-results-list {
   display: flex;
   flex-direction: column;
-  gap: $space-5;
+  gap: $space-4;
 }
+
+// ---- Result card -------------------------------------------
 
 .search-result-item {
   padding: $space-5;
   border: 1px solid $color-border;
   border-radius: $radius-md;
-  transition: box-shadow $transition-base;
+  background: $color-bg;
+  transition: box-shadow $transition-base, border-color $transition-base;
 
   &:hover {
     box-shadow: $shadow-sm;
+    border-color: darken($color-border, 6%);
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-4;
   }
 }
 
-.search-result-category {
-  margin-bottom: $space-2;
+.search-result-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin-bottom: $space-3;
+}
+
+// Type badge (Article / Page / Author)
+.search-type-badge {
+  display: inline-block;
+  padding: 2px $space-3;
+  font-size: $text-xs;
+  font-weight: $font-semi;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: $radius-sm;
+}
+
+.search-type-post   { background: rgba($color-accent, 0.1);   color: $color-accent; }
+.search-type-page   { background: rgba(#3b82f6, 0.1);         color: #2563eb; }
+.search-type-author { background: rgba(#10b981, 0.1);         color: #059669; }
+
+.search-result-cats {
+  display: flex;
+  gap: $space-2;
+  flex-wrap: wrap;
 }
 
 .search-result-title {
   font-size: $text-xl;
   font-weight: $font-bold;
+  line-height: $leading-snug;
   margin-bottom: $space-2;
   overflow-wrap: break-word;
   word-break: break-word;
 
   a {
     color: $color-text;
+    text-decoration: none;
 
-    &:hover {
-      color: $color-accent;
-    }
+    &:hover { color: $color-accent; }
   }
 
-  @media (max-width: $bp-sm) {
-    font-size: $text-lg;
-  }
+  @media (max-width: $bp-sm) { font-size: $text-lg; }
 }
 
 .search-result-excerpt {
@@ -132,30 +260,83 @@
   color: $color-text-muted;
   line-height: $leading-relaxed;
   margin-bottom: $space-3;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  // Clamp to 3 lines
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .search-result-meta {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  flex-wrap: wrap;
   font-size: $text-xs;
   color: $color-text-light;
-  display: flex;
-  gap: $space-3;
-  flex-wrap: wrap;
+
+  time { color: $color-text-light; }
 }
+
+// ---- No results state --------------------------------------
 
 .search-no-results {
   text-align: center;
-  padding: $space-16;
+  padding: $space-12 0;
   color: $color-text-muted;
 
-  p {
-    font-size: $text-lg;
-    margin-bottom: $space-4;
+  svg {
+    display: block;
+    margin: 0 auto $space-4;
+    color: $color-border;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-8 0;
   }
 }
 
+.search-no-results-title {
+  font-size: $text-xl;
+  font-weight: $font-bold;
+  color: $color-text;
+  margin-bottom: $space-2;
+
+  @media (max-width: $bp-sm) { font-size: $text-lg; }
+}
+
+.search-no-results-hint {
+  font-size: $text-base;
+  color: $color-text-muted;
+  margin: 0;
+
+  a {
+    color: $color-accent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+// ---- Highlight mark ----------------------------------------
+
 .search-highlight {
   background: rgba($color-accent, 0.15);
-  color: $color-accent;
+  color: darken($color-accent, 5%);
   border-radius: 2px;
   padding: 0 2px;
+  font-style: normal;
+}
+
+// ---- No-JS fallback ----------------------------------------
+
+.search-noscript {
+  padding: $space-8;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: $text-base;
+
+  a { color: $color-accent; }
 }
