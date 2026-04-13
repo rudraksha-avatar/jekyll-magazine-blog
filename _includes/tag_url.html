@@ -1,0 +1,9 @@
+{% comment %}
+  Shared helper: generate a canonical tag archive URL.
+  Usage: {% include tag_url.html tag=tag_name %}
+  Output: /tag/slug/  (relative URL, no host)
+  
+  Always uses | slugify (mode: default, lowercase) to match
+  the autopages permalink: "/tag/:tag/" with cased: false.
+{% endcomment %}
+{% capture tag_url %}{{ '/tag/' | append: include.tag | slugify | append: '/' | relative_url }}{% endcapture %}

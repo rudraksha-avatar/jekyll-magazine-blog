@@ -154,7 +154,16 @@
     }
 
     function slugify(str) {
-      return str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+      // Match Jekyll's | slugify filter behaviour:
+      // lowercase, replace spaces and underscores with hyphens,
+      // strip everything except alphanumerics and hyphens,
+      // collapse multiple hyphens, trim leading/trailing hyphens.
+      return str
+        .toLowerCase()
+        .replace(/[\s_]+/g, '-')
+        .replace(/[^\w-]/g, '')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '');
     }
 
     function capitalize(str) {

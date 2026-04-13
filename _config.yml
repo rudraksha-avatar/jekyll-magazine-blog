@@ -84,7 +84,7 @@ autopages:
     permalink: "/category/:cat/"
     slugify:
       mode: "default"
-      cased: true
+      cased: false
   tags:
     enabled: true
     layouts:
@@ -93,23 +93,17 @@ autopages:
     permalink: "/tag/:tag/"
     slugify:
       mode: "default"
-      cased: true
+      cased: false
   collections:
     enabled: false
 
 # ============================================================
 # Jekyll Archives
+# Disabled — jekyll-paginate-v2 autopages handles category/tag
+# archives at /category/:name/ and /tag/:name/ instead.
 # ============================================================
 jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    category: "/category/:name/"
-    tag: "/tag/:name/"
+  enabled: []
 
 # ============================================================
 # SEO Tag

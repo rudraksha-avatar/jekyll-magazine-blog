@@ -224,6 +224,12 @@
   color: $color-text-light;
 }
 
+// Category badge inside trending cards needs a small bottom gap
+.trending-category {
+  display: inline-block;
+  margin-bottom: $space-2;
+}
+
 // ---- Homepage with sidebar layout --------------------------
 
 .homepage-layout {

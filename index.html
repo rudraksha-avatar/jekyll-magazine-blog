@@ -129,7 +129,7 @@ pagination:
         <span class="trending-number">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
         <div class="trending-info">
           {% if post.categories.size > 0 %}
-          <a href="{{ '/category/' | append: post.categories.first | slugify | append: '/' | relative_url }}" class="category-badge" style="margin-bottom:6px;display:inline-block;">{{ post.categories.first | capitalize }}</a>
+          <a href="{{ '/category/' | append: post.categories.first | slugify | append: '/' | relative_url }}" class="category-badge trending-category">{{ post.categories.first | capitalize }}</a>
           {% endif %}
           <h3 class="trending-title">
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>

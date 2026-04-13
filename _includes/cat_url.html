@@ -1,0 +1,9 @@
+{% comment %}
+  Shared helper: generate a canonical category archive URL.
+  Usage: {% include cat_url.html cat=cat_name %}
+  Output: /category/slug/  (relative URL, no host)
+  
+  Always uses | slugify (mode: default, lowercase) to match
+  the autopages permalink: "/category/:cat/" with cased: false.
+{% endcomment %}
+{% capture cat_url %}{{ '/category/' | append: include.cat | slugify | append: '/' | relative_url }}{% endcapture %}
