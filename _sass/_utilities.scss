@@ -2,13 +2,19 @@
 // Utilities
 // ============================================================
 
-// Text
+// ---- Text --------------------------------------------------
 .text-center { text-align: center; }
-.text-muted   { color: $color-text-muted; }
-.text-sm      { font-size: $text-sm; }
-.text-xs      { font-size: $text-xs; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+.text-muted  { color: $color-text-muted; }
+.text-light  { color: $color-text-light; }
+.text-sm     { font-size: $text-sm; }
+.text-xs     { font-size: $text-xs; }
+.text-lg     { font-size: $text-lg; }
+.font-bold   { font-weight: $font-bold; }
+.font-medium { font-weight: $font-medium; }
 
-// Spacing
+// ---- Spacing -----------------------------------------------
 .mt-0  { margin-top: 0; }
 .mb-0  { margin-bottom: 0; }
 .mt-4  { margin-top: $space-4; }
@@ -16,33 +22,34 @@
 .mt-8  { margin-top: $space-8; }
 .mb-8  { margin-bottom: $space-8; }
 
-// Display
+// ---- Display -----------------------------------------------
 .d-none   { display: none; }
 .d-block  { display: block; }
 .d-flex   { display: flex; }
 
-// Divider
+// ---- Divider -----------------------------------------------
 .divider {
   border: none;
   border-top: 1px solid $color-border;
   margin: $space-8 0;
 }
 
-// Highlight / mark
+// ---- Global mark highlight ---------------------------------
+// (also scoped inside .prose — this covers standalone usage)
 mark {
   background: rgba($color-accent, 0.15);
-  color: $color-accent;
-  padding: 0 3px;
-  border-radius: 2px;
+  color: darken($color-accent, 10%);
+  padding: 1px 4px;
+  border-radius: 3px;
 }
 
-// Responsive image
+// ---- Responsive image --------------------------------------
 .img-fluid {
   max-width: 100%;
   height: auto;
 }
 
-// Visually hidden but focusable
+// ---- Visually hidden but focusable -------------------------
 .visually-hidden-focusable:not(:focus):not(:focus-within) {
   position: absolute;
   width: 1px;
@@ -55,14 +62,14 @@ mark {
   border: 0;
 }
 
-// Truncate text
+// ---- Truncate text -----------------------------------------
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// Section spacing
+// ---- Section spacing ---------------------------------------
 .section-spacing {
   padding: $space-12 0;
 
@@ -73,172 +80,14 @@ mark {
 
 // ============================================================
 // Policy / Legal Page Content
+// Uses the shared .prose system — just adds the date stamp
+// and constrains width for comfortable reading.
 // ============================================================
 
 .policy-content {
   max-width: $container-narrow;
   font-size: $text-base;
   line-height: $leading-relaxed;
-  overflow-wrap: break-word;
-  word-break: break-word;
-
-  h2 {
-    font-size: $text-2xl;
-    font-weight: $font-bold;
-    margin-top: $space-10;
-    margin-bottom: $space-4;
-    padding-top: $space-4;
-    border-top: 1px solid $color-border;
-    color: $color-text;
-
-    &:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    @media (max-width: $bp-sm) {
-      font-size: $text-xl;
-    }
-  }
-
-  h3 {
-    font-size: $text-xl;
-    font-weight: $font-semi;
-    margin-top: $space-6;
-    margin-bottom: $space-3;
-    color: $color-text;
-
-    @media (max-width: $bp-sm) {
-      font-size: $text-lg;
-    }
-  }
-
-  h4 {
-    font-size: $text-lg;
-    font-weight: $font-semi;
-    margin-top: $space-5;
-    margin-bottom: $space-2;
-    color: $color-text;
-  }
-
-  p {
-    margin-bottom: $space-4;
-    line-height: $leading-relaxed;
-    color: $color-text;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  ul, ol {
-    margin-bottom: $space-4;
-    padding-left: $space-6;
-    line-height: $leading-relaxed;
-
-    li {
-      margin-bottom: $space-2;
-    }
-
-    ul, ol {
-      margin-top: $space-2;
-      margin-bottom: $space-2;
-    }
-  }
-
-  ul { list-style: disc; }
-  ol { list-style: decimal; }
-  ul ul { list-style: circle; }
-
-  strong, b { font-weight: $font-bold; }
-  em, i { font-style: italic; }
-
-  a {
-    color: $color-accent;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    overflow-wrap: break-word;
-    word-break: break-word;
-
-    &:hover {
-      color: $color-accent-hover;
-    }
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid $color-border;
-    margin: $space-8 0;
-  }
-
-  blockquote {
-    border-left: 4px solid $color-accent;
-    padding: $space-3 $space-5;
-    margin: $space-6 0;
-    background: $color-bg-alt;
-    border-radius: 0 $radius-md $radius-md 0;
-    font-style: italic;
-    color: $color-text-muted;
-  }
-
-  code {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.875em;
-    background: $color-bg-alt;
-    border: 1px solid $color-border;
-    padding: 2px 6px;
-    border-radius: $radius-sm;
-    color: $color-accent;
-  }
-
-  pre {
-    background: $color-bg-dark;
-    border-radius: $radius-md;
-    padding: $space-5 $space-6;
-    overflow-x: auto;
-    margin: $space-6 0;
-    font-size: $text-sm;
-    line-height: $leading-relaxed;
-    white-space: pre;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-
-    code {
-      background: none;
-      border: none;
-      padding: 0;
-      color: #e2e8f0;
-      font-size: inherit;
-    }
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: $space-6 0;
-    font-size: $text-sm;
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    max-width: 100%;
-
-    th, td {
-      padding: $space-3 $space-4;
-      text-align: left;
-      border-bottom: 1px solid $color-border;
-    }
-
-    th {
-      font-weight: $font-semi;
-      background: $color-bg-alt;
-      border-bottom: 2px solid $color-border;
-    }
-
-    td {
-      white-space: normal;
-      min-width: 100px;
-    }
-  }
 
   .policy-date {
     font-size: $text-sm;

@@ -10,7 +10,8 @@
   }
 }
 
-// Post Header
+// ---- Post Header -------------------------------------------
+
 .post-header {
   margin-bottom: $space-8;
 
@@ -32,14 +33,11 @@
   line-height: $leading-tight;
   letter-spacing: -0.02em;
   margin-bottom: $space-4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 
-  @media (max-width: $bp-md) {
-    font-size: $text-3xl;
-  }
-
-  @media (max-width: $bp-sm) {
-    font-size: $text-2xl;
-  }
+  @media (max-width: $bp-md) { font-size: $text-3xl; }
+  @media (max-width: $bp-sm) { font-size: $text-2xl; }
 }
 
 .post-subtitle {
@@ -49,9 +47,7 @@
   margin-bottom: $space-5;
   font-weight: $font-normal;
 
-  @media (max-width: $bp-sm) {
-    font-size: $text-lg;
-  }
+  @media (max-width: $bp-sm) { font-size: $text-lg; }
 }
 
 .post-meta {
@@ -81,7 +77,8 @@
   color: $color-text-light;
 }
 
-// Featured Image
+// ---- Featured Image ----------------------------------------
+
 .post-featured-image {
   margin: $space-8 0;
   border-radius: $radius-lg;
@@ -103,7 +100,8 @@
   }
 }
 
-// TOC
+// ---- Table of Contents -------------------------------------
+
 .toc-wrapper {
   background: $color-bg-alt;
   border: 1px solid $color-border;
@@ -113,6 +111,17 @@
 
   @media (max-width: $bp-sm) {
     padding: $space-4 $space-5;
+  }
+
+  &::before {
+    content: "Table of Contents";
+    display: block;
+    font-size: $text-sm;
+    font-weight: $font-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text;
+    margin-bottom: $space-3;
   }
 
   #markdown-toc {
@@ -127,10 +136,9 @@
 
       a {
         color: $color-text-muted;
+        text-decoration: none;
 
-        &:hover {
-          color: $color-accent;
-        }
+        &:hover { color: $color-accent; }
       }
 
       ul, ol {
@@ -140,424 +148,14 @@
       }
     }
   }
-
-  &::before {
-    content: "Table of Contents";
-    display: block;
-    font-size: $text-sm;
-    font-weight: $font-bold;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: $color-text;
-    margin-bottom: $space-3;
-  }
 }
 
-// ============================================================
-// Post Content Body — Full Prose Typography System
-// ============================================================
+// ---- Post Content ------------------------------------------
+// All prose styles for .post-content are defined in _prose.scss
+// (serif font, full element coverage). Nothing extra needed here.
 
-.post-content {
-  font-family: $font-serif;
-  font-size: $text-lg;
-  line-height: $leading-loose;
-  color: $color-text;
-  // Prevent any child from overflowing the column
-  overflow-wrap: break-word;
-  word-break: break-word;
+// ---- Post Tags ---------------------------------------------
 
-  @media (max-width: $bp-sm) {
-    font-size: $text-base;
-  }
-
-  // ---- Headings ----
-  h1, h2, h3, h4, h5, h6 {
-    font-family: $font-sans;
-    font-weight: $font-bold;
-    line-height: $leading-tight;
-    margin-top: $space-10;
-    margin-bottom: $space-4;
-    color: $color-text;
-    overflow-wrap: break-word;
-
-    @media (max-width: $bp-sm) {
-      margin-top: $space-8;
-      margin-bottom: $space-3;
-    }
-  }
-
-  h1 { font-size: $text-4xl; letter-spacing: -0.02em; }
-  h2 { font-size: $text-3xl; }
-  h3 { font-size: $text-2xl; }
-  h4 { font-size: $text-xl; }
-  h5 { font-size: $text-lg; }
-  h6 { font-size: $text-base; color: $color-text-muted; }
-
-  @media (max-width: $bp-md) {
-    h1 { font-size: $text-3xl; }
-    h2 { font-size: $text-2xl; }
-    h3 { font-size: $text-xl; }
-    h4 { font-size: $text-lg; }
-  }
-
-  @media (max-width: $bp-sm) {
-    h1 { font-size: $text-2xl; }
-    h2 { font-size: $text-xl; }
-    h3 { font-size: $text-lg; }
-    h4 { font-size: $text-base; }
-  }
-
-  // ---- Paragraphs ----
-  p {
-    margin-bottom: $space-6;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  // ---- Inline text elements ----
-  a {
-    color: $color-accent;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    overflow-wrap: break-word;
-    word-break: break-word;
-
-    &:hover {
-      color: $color-accent-hover;
-    }
-  }
-
-  strong, b {
-    font-weight: $font-bold;
-  }
-
-  em, i {
-    font-style: italic;
-  }
-
-  small {
-    font-size: $text-sm;
-    color: $color-text-muted;
-  }
-
-  mark {
-    background: rgba($color-accent, 0.15);
-    color: $color-accent;
-    padding: 0 3px;
-    border-radius: 2px;
-  }
-
-  del, s {
-    text-decoration: line-through;
-    color: $color-text-muted;
-  }
-
-  ins {
-    text-decoration: underline;
-    text-decoration-color: $color-accent;
-    text-underline-offset: 3px;
-  }
-
-  abbr[title] {
-    text-decoration: underline dotted;
-    cursor: help;
-  }
-
-  sub {
-    vertical-align: sub;
-    font-size: 0.75em;
-  }
-
-  sup {
-    vertical-align: super;
-    font-size: 0.75em;
-  }
-
-  // ---- Lists ----
-  ul, ol {
-    margin-bottom: $space-6;
-    padding-left: $space-6;
-
-    li {
-      margin-bottom: $space-2;
-      line-height: $leading-relaxed;
-    }
-
-    // Nested lists
-    ul, ol {
-      margin-top: $space-2;
-      margin-bottom: $space-2;
-    }
-  }
-
-  ul { list-style: disc; }
-  ol { list-style: decimal; }
-
-  ul ul { list-style: circle; }
-  ul ul ul { list-style: square; }
-
-  // ---- Blockquote ----
-  blockquote {
-    border-left: 4px solid $color-accent;
-    padding: $space-4 $space-6;
-    margin: $space-8 0;
-    background: $color-bg-alt;
-    border-radius: 0 $radius-md $radius-md 0;
-
-    p {
-      font-size: $text-xl;
-      font-style: italic;
-      color: $color-text;
-      margin: 0;
-
-      @media (max-width: $bp-sm) {
-        font-size: $text-lg;
-      }
-    }
-
-    p + p {
-      margin-top: $space-4;
-    }
-
-    cite {
-      display: block;
-      font-size: $text-sm;
-      color: $color-text-muted;
-      margin-top: $space-3;
-      font-style: normal;
-      font-family: $font-sans;
-    }
-
-    @media (max-width: $bp-sm) {
-      padding: $space-4;
-      margin: $space-6 0;
-    }
-  }
-
-  // ---- Horizontal Rule ----
-  hr {
-    border: none;
-    border-top: 2px solid $color-border;
-    margin: $space-10 0;
-  }
-
-  // ---- Images & Figures ----
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: $radius-md;
-    margin: $space-6 0;
-    display: block;
-  }
-
-  figure {
-    margin: $space-8 0;
-
-    img {
-      margin: 0;
-      width: 100%;
-    }
-
-    figcaption {
-      font-size: $text-sm;
-      color: $color-text-muted;
-      text-align: center;
-      margin-top: $space-2;
-      font-style: italic;
-      font-family: $font-sans;
-      line-height: $leading-relaxed;
-    }
-  }
-
-  // ---- Inline Code ----
-  code {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.875em;
-    background: $color-bg-alt;
-    border: 1px solid $color-border;
-    padding: 2px 6px;
-    border-radius: $radius-sm;
-    color: $color-accent;
-    // Prevent inline code from breaking layout
-    overflow-wrap: break-word;
-    word-break: break-all;
-  }
-
-  // ---- Code Blocks ----
-  pre {
-    background: $color-bg-dark;
-    border-radius: $radius-md;
-    padding: $space-5 $space-6;
-    // Horizontal scroll for code blocks — never break layout
-    overflow-x: auto;
-    overflow-y: visible;
-    margin: $space-8 0;
-    font-size: $text-sm;
-    line-height: $leading-relaxed;
-    // Preserve formatting
-    white-space: pre;
-    // Prevent pre from expanding beyond container
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-
-    @media (max-width: $bp-sm) {
-      padding: $space-4;
-      border-radius: $radius-sm;
-      font-size: $text-xs;
-    }
-
-    code {
-      background: none;
-      border: none;
-      padding: 0;
-      color: #e2e8f0;
-      font-size: inherit;
-      border-radius: 0;
-      overflow-wrap: normal;
-      word-break: normal;
-      white-space: inherit;
-    }
-  }
-
-  // ---- kbd & samp ----
-  kbd {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.875em;
-    background: $color-bg-alt;
-    border: 1px solid $color-border;
-    border-bottom-width: 2px;
-    padding: 2px 6px;
-    border-radius: $radius-sm;
-    color: $color-text;
-    box-shadow: inset 0 -1px 0 $color-border;
-  }
-
-  samp {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.875em;
-    background: $color-bg-alt;
-    padding: 2px 6px;
-    border-radius: $radius-sm;
-    color: $color-text;
-  }
-
-  // ---- Tables ----
-  // Wrap tables in a scrollable container to prevent overflow on mobile
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: $space-8 0;
-    font-size: $text-sm;
-    font-family: $font-sans;
-    // display: block + overflow-x: auto makes table scrollable on mobile
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    // Ensure table doesn't exceed container
-    max-width: 100%;
-
-    th, td {
-      padding: $space-3 $space-4;
-      text-align: left;
-      border-bottom: 1px solid $color-border;
-      white-space: nowrap;
-
-      @media (max-width: $bp-sm) {
-        padding: $space-2 $space-3;
-      }
-    }
-
-    th {
-      font-weight: $font-semi;
-      background: $color-bg-alt;
-      color: $color-text;
-      border-bottom: 2px solid $color-border;
-    }
-
-    tr:hover td {
-      background: $color-bg-alt;
-    }
-
-    // Allow wrapping in cells that have longer text
-    td {
-      white-space: normal;
-      min-width: 120px;
-    }
-  }
-
-  // ---- Details / Summary ----
-  details {
-    border: 1px solid $color-border;
-    border-radius: $radius-md;
-    padding: $space-4 $space-5;
-    margin: $space-6 0;
-    background: $color-bg-alt;
-
-    summary {
-      font-family: $font-sans;
-      font-weight: $font-semi;
-      font-size: $text-base;
-      cursor: pointer;
-      color: $color-text;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: $space-2;
-
-      &::-webkit-details-marker {
-        display: none;
-      }
-
-      &::before {
-        content: "▶";
-        font-size: 0.7em;
-        color: $color-accent;
-        transition: transform $transition-fast;
-        flex-shrink: 0;
-      }
-
-      &:hover {
-        color: $color-accent;
-      }
-    }
-
-    &[open] summary::before {
-      transform: rotate(90deg);
-    }
-
-    // Content inside details
-    > *:not(summary) {
-      margin-top: $space-4;
-    }
-  }
-
-  // ---- Responsive Embeds ----
-  .embed-responsive {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: $radius-md;
-    margin: $space-8 0;
-
-    iframe, embed, object, video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  iframe {
-    max-width: 100%;
-    border-radius: $radius-md;
-  }
-}
-
-// Post Tags
 .post-tags {
   display: flex;
   align-items: center;
@@ -592,332 +190,24 @@
   font-weight: $font-bold;
   line-height: $leading-tight;
   margin-bottom: $space-3;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 
-  @media (max-width: $bp-md) {
-    font-size: $text-3xl;
-  }
-
-  @media (max-width: $bp-sm) {
-    font-size: $text-2xl;
-  }
+  @media (max-width: $bp-md) { font-size: $text-3xl; }
+  @media (max-width: $bp-sm) { font-size: $text-2xl; }
 }
 
 .page-subtitle {
   font-size: $text-xl;
   color: $color-text-muted;
   margin: 0;
+  line-height: $leading-relaxed;
 
-  @media (max-width: $bp-sm) {
-    font-size: $text-lg;
-  }
+  @media (max-width: $bp-sm) { font-size: $text-lg; }
 }
 
-// ============================================================
-// Page Body — Full Prose Typography (mirrors post-content)
-// ============================================================
-
-.page-body {
-  font-size: $text-lg;
-  line-height: $leading-loose;
-  color: $color-text;
-  overflow-wrap: break-word;
-  word-break: break-word;
-
-  @media (max-width: $bp-sm) {
-    font-size: $text-base;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: $font-sans;
-    font-weight: $font-bold;
-    line-height: $leading-tight;
-    color: $color-text;
-    overflow-wrap: break-word;
-  }
-
-  h1 {
-    font-size: $text-3xl;
-    margin-top: $space-10;
-    margin-bottom: $space-4;
-  }
-
-  h2 {
-    font-size: $text-2xl;
-    margin-top: $space-10;
-    margin-bottom: $space-4;
-  }
-
-  h3 {
-    font-size: $text-xl;
-    margin-top: $space-8;
-    margin-bottom: $space-3;
-  }
-
-  h4 {
-    font-size: $text-lg;
-    margin-top: $space-6;
-    margin-bottom: $space-3;
-  }
-
-  h5 {
-    font-size: $text-base;
-    margin-top: $space-6;
-    margin-bottom: $space-2;
-  }
-
-  h6 {
-    font-size: $text-sm;
-    margin-top: $space-5;
-    margin-bottom: $space-2;
-    color: $color-text-muted;
-  }
-
-  @media (max-width: $bp-sm) {
-    h1 { font-size: $text-2xl; }
-    h2 { font-size: $text-xl; }
-    h3 { font-size: $text-lg; }
-    h4 { font-size: $text-base; }
-  }
-
-  p {
-    margin-bottom: $space-5;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: $color-accent;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    overflow-wrap: break-word;
-    word-break: break-word;
-
-    &:hover {
-      color: $color-accent-hover;
-    }
-  }
-
-  strong, b { font-weight: $font-bold; }
-  em, i { font-style: italic; }
-
-  small {
-    font-size: $text-sm;
-    color: $color-text-muted;
-  }
-
-  mark {
-    background: rgba($color-accent, 0.15);
-    color: $color-accent;
-    padding: 0 3px;
-    border-radius: 2px;
-  }
-
-  del, s {
-    text-decoration: line-through;
-    color: $color-text-muted;
-  }
-
-  ins {
-    text-decoration: underline;
-    text-decoration-color: $color-accent;
-    text-underline-offset: 3px;
-  }
-
-  ul, ol {
-    margin-bottom: $space-5;
-    padding-left: $space-6;
-
-    li {
-      margin-bottom: $space-2;
-      line-height: $leading-relaxed;
-    }
-
-    ul, ol {
-      margin-top: $space-2;
-      margin-bottom: $space-2;
-    }
-  }
-
-  ul { list-style: disc; }
-  ol { list-style: decimal; }
-  ul ul { list-style: circle; }
-
-  blockquote {
-    border-left: 4px solid $color-accent;
-    padding: $space-4 $space-6;
-    margin: $space-8 0;
-    background: $color-bg-alt;
-    border-radius: 0 $radius-md $radius-md 0;
-
-    p {
-      font-size: $text-xl;
-      font-style: italic;
-      color: $color-text;
-      margin: 0;
-
-      @media (max-width: $bp-sm) {
-        font-size: $text-lg;
-      }
-    }
-
-    cite {
-      display: block;
-      font-size: $text-sm;
-      color: $color-text-muted;
-      margin-top: $space-3;
-      font-style: normal;
-    }
-  }
-
-  hr {
-    border: none;
-    border-top: 2px solid $color-border;
-    margin: $space-10 0;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: $radius-md;
-    margin: $space-6 0;
-    display: block;
-  }
-
-  figure {
-    margin: $space-8 0;
-
-    img { margin: 0; width: 100%; }
-
-    figcaption {
-      font-size: $text-sm;
-      color: $color-text-muted;
-      text-align: center;
-      margin-top: $space-2;
-      font-style: italic;
-    }
-  }
-
-  code {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.875em;
-    background: $color-bg-alt;
-    border: 1px solid $color-border;
-    padding: 2px 6px;
-    border-radius: $radius-sm;
-    color: $color-accent;
-    overflow-wrap: break-word;
-    word-break: break-all;
-  }
-
-  pre {
-    background: $color-bg-dark;
-    border-radius: $radius-md;
-    padding: $space-5 $space-6;
-    overflow-x: auto;
-    margin: $space-8 0;
-    font-size: $text-sm;
-    line-height: $leading-relaxed;
-    white-space: pre;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-
-    @media (max-width: $bp-sm) {
-      padding: $space-4;
-      font-size: $text-xs;
-    }
-
-    code {
-      background: none;
-      border: none;
-      padding: 0;
-      color: #e2e8f0;
-      font-size: inherit;
-      border-radius: 0;
-      overflow-wrap: normal;
-      word-break: normal;
-      white-space: inherit;
-    }
-  }
-
-  kbd {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.875em;
-    background: $color-bg-alt;
-    border: 1px solid $color-border;
-    border-bottom-width: 2px;
-    padding: 2px 6px;
-    border-radius: $radius-sm;
-    color: $color-text;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: $space-8 0;
-    font-size: $text-sm;
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    max-width: 100%;
-
-    th, td {
-      padding: $space-3 $space-4;
-      text-align: left;
-      border-bottom: 1px solid $color-border;
-    }
-
-    th {
-      font-weight: $font-semi;
-      background: $color-bg-alt;
-      color: $color-text;
-      border-bottom: 2px solid $color-border;
-    }
-
-    tr:hover td {
-      background: $color-bg-alt;
-    }
-
-    td {
-      white-space: normal;
-      min-width: 120px;
-    }
-  }
-
-  details {
-    border: 1px solid $color-border;
-    border-radius: $radius-md;
-    padding: $space-4 $space-5;
-    margin: $space-6 0;
-    background: $color-bg-alt;
-
-    summary {
-      font-weight: $font-semi;
-      cursor: pointer;
-      color: $color-text;
-      list-style: none;
-
-      &::-webkit-details-marker { display: none; }
-
-      &::before {
-        content: "▶ ";
-        font-size: 0.7em;
-        color: $color-accent;
-      }
-
-      &:hover { color: $color-accent; }
-    }
-
-    &[open] summary::before {
-      content: "▼ ";
-    }
-
-    > *:not(summary) {
-      margin-top: $space-4;
-    }
-  }
-}
+// ---- Page Body ---------------------------------------------
+// All prose styles for .page-body are defined in _prose.scss
 
 // ============================================================
 // Contact Form
@@ -994,9 +284,7 @@
   text-align: center;
   padding: $space-24 0;
 
-  @media (max-width: $bp-sm) {
-    padding: $space-16 0;
-  }
+  @media (max-width: $bp-sm) { padding: $space-16 0; }
 
   .error-code {
     font-size: 8rem;
@@ -1005,9 +293,7 @@
     line-height: 1;
     margin-bottom: $space-4;
 
-    @media (max-width: $bp-sm) {
-      font-size: 5rem;
-    }
+    @media (max-width: $bp-sm) { font-size: 5rem; }
   }
 
   .error-title {
@@ -1015,9 +301,7 @@
     font-weight: $font-bold;
     margin-bottom: $space-4;
 
-    @media (max-width: $bp-sm) {
-      font-size: $text-2xl;
-    }
+    @media (max-width: $bp-sm) { font-size: $text-2xl; }
   }
 
   .error-message {
@@ -1026,9 +310,7 @@
     max-width: 480px;
     margin: 0 auto $space-8;
 
-    @media (max-width: $bp-sm) {
-      font-size: $text-base;
-    }
+    @media (max-width: $bp-sm) { font-size: $text-base; }
   }
 
   .error-actions {
@@ -1048,10 +330,7 @@
     border-radius: $radius-sm;
     transition: background $transition-fast;
 
-    &:hover {
-      background: $color-accent-hover;
-      color: #fff;
-    }
+    &:hover { background: $color-accent-hover; color: #fff; }
   }
 
   .btn-secondary {
@@ -1065,8 +344,6 @@
     border: 1px solid $color-border;
     transition: background $transition-fast;
 
-    &:hover {
-      background: $color-border;
-    }
+    &:hover { background: $color-border; }
   }
 }
