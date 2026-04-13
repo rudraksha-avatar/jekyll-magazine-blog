@@ -1,0 +1,47 @@
+{% if paginator.total_pages > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  <ul class="pagination-list">
+
+    {% if paginator.previous_page %}
+    <li class="pagination-item">
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link pagination-prev" aria-label="Previous page">
+        &larr; Newer
+      </a>
+    </li>
+    {% else %}
+    <li class="pagination-item pagination-item--disabled">
+      <span class="pagination-link pagination-prev" aria-disabled="true">&larr; Newer</span>
+    </li>
+    {% endif %}
+
+    {% assign start_page = paginator.page | minus: 2 %}
+    {% if start_page < 1 %}{% assign start_page = 1 %}{% endif %}
+    {% assign end_page = start_page | plus: 4 %}
+    {% if end_page > paginator.total_pages %}{% assign end_page = paginator.total_pages %}{% endif %}
+
+    {% for i in (start_page..end_page) %}
+    <li class="pagination-item {% if i == paginator.page %}pagination-item--active{% endif %}">
+      {% if i == 1 %}
+        {% assign page_path = paginator.first_page_path | default: page.url %}
+        <a href="{{ page_path | relative_url }}" class="pagination-link" {% if i == paginator.page %}aria-current="page"{% endif %}>{{ i }}</a>
+      {% else %}
+        <a href="{{ paginator.page_path | replace: ':num', i | relative_url }}" class="pagination-link" {% if i == paginator.page %}aria-current="page"{% endif %}>{{ i }}</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+
+    {% if paginator.next_page %}
+    <li class="pagination-item">
+      <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link pagination-next" aria-label="Next page">
+        Older &rarr;
+      </a>
+    </li>
+    {% else %}
+    <li class="pagination-item pagination-item--disabled">
+      <span class="pagination-link pagination-next" aria-disabled="true">Older &rarr;</span>
+    </li>
+    {% endif %}
+
+  </ul>
+</nav>
+{% endif %}

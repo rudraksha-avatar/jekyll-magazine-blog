@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+{% assign cat_name = page.category | default: page.title | remove: "Category: " %}
+{% assign cat_slug = cat_name | slugify %}
+{% assign cat_desc = site.category_descriptions[cat_slug] %}
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ site.url }}/blog/"},
+    {"@type": "ListItem", "position": 3, "name": {{ cat_name | capitalize | jsonify }}, "item": "{{ page.url | absolute_url }}"}
+  ]
+}
+</script>
+
+<div class="container">
+
+  <header class="archive-header category-header">
+    <div class="archive-header-inner">
+      <span class="archive-label">Category</span>
+      <h1 class="archive-title">{{ cat_name | capitalize }}</h1>
+      {% if cat_desc %}
+      <p class="archive-description">{{ cat_desc }}</p>
+      {% endif %}
+      {% if paginator.total_posts %}
+      <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if paginator.posts.size > 0 %}
+  <div class="posts-grid">
+    {% for post in paginator.posts %}
+    {% include post_card.html post=post %}
+    {% endfor %}
+  </div>
+  {% include pagination.html %}
+  {% else %}
+  <p class="no-posts">No posts in this category yet.</p>
+  {% endif %}
+
+</div>

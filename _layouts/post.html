@@ -1,0 +1,207 @@
+---
+layout: default
+---
+
+{% assign author_key = page.author | default: "editorial" %}
+{% assign author = site.data.authors[author_key] %}
+{% assign settings = site.data.settings %}
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
+  "image": "{{ page.image | default: site.defaults[0].values.image | prepend: site.url }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ author.display_name | default: page.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.organization.logo | prepend: site.url }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  }
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ site.url }}/blog/"
+    }{% if page.categories.first %},
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.categories.first | capitalize }}",
+      "item": "{{ site.url }}/category/{{ page.categories.first | slugify }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": {{ page.title | jsonify }},
+      "item": "{{ page.url | absolute_url }}"
+    }
+    {% else %},
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ page.title | jsonify }},
+      "item": "{{ page.url | absolute_url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+
+<article class="post-single" itemscope itemtype="https://schema.org/Article">
+
+  <!-- Ad: Top Banner Placeholder -->
+  {% if site.data.settings.show_ad_placeholders %}
+  <div class="ad-placeholder ad-top-banner" aria-hidden="true">
+    <span>Advertisement</span>
+  </div>
+  {% endif %}
+
+  <div class="container">
+
+    <!-- Breadcrumbs -->
+    {% if settings.show_breadcrumbs %}
+    {% include breadcrumbs.html %}
+    {% endif %}
+
+    <div class="post-layout">
+
+      <!-- Main Content -->
+      <div class="post-main">
+
+        <header class="post-header">
+          {% if page.categories.size > 0 %}
+          <div class="post-categories">
+            {% for cat in page.categories %}
+            <a href="{{ '/category/' | append: cat | slugify | append: '/' | relative_url }}" class="category-badge">{{ cat | capitalize }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
+
+          {% if page.description %}
+          <p class="post-subtitle">{{ page.description }}</p>
+          {% endif %}
+
+          <div class="post-meta">
+            {% if settings.show_author and author %}
+            <span class="post-meta-author">
+              {% if author.avatar %}
+              <img src="{{ author.avatar }}" alt="{{ author.display_name }}" class="author-avatar-sm" loading="lazy" width="32" height="32">
+              {% endif %}
+              <a href="{{ '/author/' | append: author.name | relative_url }}">{{ author.display_name }}</a>
+            </span>
+            {% endif %}
+
+            {% if settings.show_date %}
+            <span class="post-meta-date">
+              <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                {{ page.date | date: "%B %-d, %Y" }}
+              </time>
+              {% if page.last_modified_at and page.last_modified_at != page.date %}
+              <span class="post-updated">(Updated <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%B %-d, %Y" }}</time>)</span>
+              {% endif %}
+            </span>
+            {% endif %}
+
+            {% if settings.show_reading_time %}
+            <span class="post-meta-reading">
+              {% include reading_time.html content=content %}
+            </span>
+            {% endif %}
+          </div>
+        </header>
+
+        {% if page.image %}
+        <figure class="post-featured-image">
+          <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title }}" loading="lazy" itemprop="image">
+        </figure>
+        {% endif %}
+
+        <!-- Ad: In-Content Top Placeholder -->
+        {% if site.data.settings.show_ad_placeholders %}
+        <div class="ad-placeholder ad-in-content" aria-hidden="true">
+          <span>Advertisement</span>
+        </div>
+        {% endif %}
+
+        {% if page.toc %}
+        <div class="toc-wrapper">
+          {% toc %}
+        </div>
+        {% endif %}
+
+        <div class="post-content" itemprop="articleBody">
+          {{ content }}
+        </div>
+
+        <!-- Tags -->
+        {% if page.tags.size > 0 and settings.show_tags %}
+        <div class="post-tags">
+          <span class="tags-label">Tags:</span>
+          {% for tag in page.tags %}
+          <a href="{{ '/tag/' | append: tag | slugify | append: '/' | relative_url }}" class="tag-badge">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Share -->
+        {% if settings.show_share_buttons %}
+        {% include share_buttons.html %}
+        {% endif %}
+
+        <!-- Author Box -->
+        {% if settings.show_author and author %}
+        {% include author_box.html author=author %}
+        {% endif %}
+
+        <!-- Prev / Next -->
+        {% include post_navigation.html %}
+
+        <!-- Related Posts -->
+        {% if settings.show_related_posts %}
+        {% include related_posts.html %}
+        {% endif %}
+
+      </div><!-- /.post-main -->
+
+      <!-- Sidebar -->
+      <aside class="post-sidebar" role="complementary" aria-label="Sidebar">
+        {% include sidebar.html %}
+      </aside>
+
+    </div><!-- /.post-layout -->
+
+  </div><!-- /.container -->
+
+</article>

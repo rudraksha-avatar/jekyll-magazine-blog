@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div class="container">
+
+  <header class="archive-header">
+    <span class="archive-label">All Articles</span>
+    <h1 class="archive-title">{{ page.title | default: "The Blog" }}</h1>
+    {% if page.description %}
+    <p class="archive-description">{{ page.description }}</p>
+    {% endif %}
+    {% if paginator.total_posts %}
+    <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %}</p>
+    {% endif %}
+  </header>
+
+  <!-- Ad: Top Banner Placeholder -->
+  {% if site.data.settings.show_ad_placeholders %}
+  <div class="ad-placeholder ad-top-banner" aria-hidden="true">
+    <span>Advertisement</span>
+  </div>
+  {% endif %}
+
+  {% if paginator.posts.size > 0 %}
+  <div class="posts-grid">
+    {% for post in paginator.posts %}
+    {% include post_card.html post=post %}
+    {% endfor %}
+  </div>
+
+  {% include pagination.html %}
+
+  {% else %}
+  <p class="no-posts">No posts found.</p>
+  {% endif %}
+
+</div>

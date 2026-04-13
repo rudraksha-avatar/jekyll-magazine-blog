@@ -1,0 +1,50 @@
+{% assign p = include.post %}
+{% assign author_key = p.author | default: "editorial" %}
+{% assign author = site.data.authors[author_key] %}
+
+<article class="post-card post-card--featured">
+  <a href="{{ p.url | relative_url }}" class="post-card-image-link" tabindex="-1" aria-hidden="true">
+    <div class="post-card-image-wrap">
+      <img
+        src="{{ p.image | default: '/assets/images/default-post.jpg' }}"
+        alt="{{ p.image_alt | default: p.title }}"
+        loading="lazy"
+        class="post-card-image"
+        width="800"
+        height="450"
+      >
+    </div>
+  </a>
+  <div class="post-card-body">
+    <span class="featured-label">Featured</span>
+    {% if p.categories.size > 0 %}
+    <div class="post-card-categories">
+      {% for cat in p.categories limit:1 %}
+      <a href="{{ '/category/' | append: cat | slugify | append: '/' | relative_url }}" class="category-badge">{{ cat | capitalize }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h2 class="post-card-title post-card-title--lg">
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+    </h2>
+
+    {% if p.description or p.excerpt %}
+    <p class="post-card-excerpt">{{ p.description | default: p.excerpt | strip_html | truncatewords: 30 }}</p>
+    {% endif %}
+
+    <footer class="post-card-footer">
+      <div class="post-card-meta">
+        {% if author %}
+        <span class="post-card-author">
+          <a href="{{ '/author/' | append: author.name | relative_url }}">{{ author.display_name }}</a>
+        </span>
+        {% endif %}
+        <time class="post-card-date" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%B %-d, %Y" }}</time>
+        {% if site.data.settings.show_reading_time %}
+        <span class="post-card-reading">{% include reading_time.html content=p.content %}</span>
+        {% endif %}
+      </div>
+    </footer>
+  </div>
+</article>

@@ -1,0 +1,44 @@
+{% assign max_related = site.data.settings.related_posts_count | default: 3 %}
+{% assign related = "" | split: "" %}
+
+{% comment %} First pass: match by category {% endcomment %}
+{% for post in site.posts %}
+  {% if post.url != page.url %}
+    {% for cat in post.categories %}
+      {% if page.categories contains cat %}
+        {% unless related contains post %}
+          {% assign related = related | push: post %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Second pass: match by tag if not enough {% endcomment %}
+{% if related.size < max_related %}
+  {% for post in site.posts %}
+    {% if post.url != page.url %}
+      {% unless related contains post %}
+        {% for tag in post.tags %}
+          {% if page.tags contains tag %}
+            {% assign related = related | push: post %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign related = related | uniq | limit: max_related %}
+
+{% if related.size > 0 %}
+<section class="related-posts" aria-label="Related articles">
+  <h2 class="related-posts-title">Related Articles</h2>
+  <div class="related-posts-grid">
+    {% for post in related %}
+    {% include post_card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

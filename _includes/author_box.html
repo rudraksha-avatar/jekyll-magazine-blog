@@ -1,0 +1,26 @@
+{% assign author = include.author %}
+{% if author %}
+<div class="author-box">
+  {% if author.avatar %}
+  <img src="{{ author.avatar }}" alt="{{ author.display_name }}" class="author-box-avatar" loading="lazy" width="80" height="80">
+  {% endif %}
+  <div class="author-box-content">
+    <p class="author-box-label">Written by</p>
+    <h3 class="author-box-name">
+      <a href="{{ '/author/' | append: author.name | relative_url }}">{{ author.display_name }}</a>
+    </h3>
+    {% if author.role %}<p class="author-box-role">{{ author.role }}</p>{% endif %}
+    {% if author.bio %}<p class="author-box-bio">{{ author.bio }}</p>{% endif %}
+    {% if author.social %}
+    <div class="author-box-social">
+      {% if author.social.twitter %}
+      <a href="https://twitter.com/{{ author.social.twitter }}" rel="noopener noreferrer" target="_blank" class="social-link">Twitter</a>
+      {% endif %}
+      {% if author.social.linkedin %}
+      <a href="https://linkedin.com/in/{{ author.social.linkedin }}" rel="noopener noreferrer" target="_blank" class="social-link">LinkedIn</a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

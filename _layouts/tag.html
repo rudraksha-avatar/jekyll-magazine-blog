@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+{% assign tag_name = page.tag | default: page.title | remove: "Tag: " %}
+
+<div class="container">
+
+  <header class="archive-header tag-header">
+    <div class="archive-header-inner">
+      <span class="archive-label">Tag</span>
+      <h1 class="archive-title">{{ tag_name }}</h1>
+      {% if paginator.total_posts %}
+      <p class="archive-count">{{ paginator.total_posts }} article{% if paginator.total_posts != 1 %}s{% endif %} tagged with "{{ tag_name }}"</p>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if paginator.posts.size > 0 %}
+  <div class="posts-grid">
+    {% for post in paginator.posts %}
+    {% include post_card.html post=post %}
+    {% endfor %}
+  </div>
+  {% include pagination.html %}
+  {% else %}
+  <p class="no-posts">No posts with this tag yet.</p>
+  {% endif %}
+
+</div>

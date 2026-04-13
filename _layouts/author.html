@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+{% assign author_key = page.author_key | default: page.author %}
+{% assign author = site.data.authors[author_key] %}
+
+<div class="container">
+
+  {% if author %}
+  <header class="author-archive-header">
+    <div class="author-archive-profile">
+      {% if author.avatar %}
+      <img src="{{ author.avatar }}" alt="{{ author.display_name }}" class="author-archive-avatar" loading="lazy" width="96" height="96">
+      {% endif %}
+      <div class="author-archive-info">
+        <span class="archive-label">Author</span>
+        <h1 class="archive-title">{{ author.display_name }}</h1>
+        {% if author.role %}<p class="author-role">{{ author.role }}</p>{% endif %}
+        {% if author.bio %}<p class="author-bio">{{ author.bio }}</p>{% endif %}
+        {% if author.social %}
+        <div class="author-social">
+          {% if author.social.twitter %}<a href="https://twitter.com/{{ author.social.twitter }}" rel="noopener noreferrer" target="_blank" class="social-link">Twitter</a>{% endif %}
+          {% if author.social.linkedin %}<a href="https://linkedin.com/in/{{ author.social.linkedin }}" rel="noopener noreferrer" target="_blank" class="social-link">LinkedIn</a>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  {% endif %}
+
+  {% assign author_posts = site.posts | where: "author", author_key %}
+  {% if author_posts.size > 0 %}
+  <div class="posts-grid">
+    {% for post in author_posts %}
+    {% include post_card.html post=post %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="no-posts">No posts by this author yet.</p>
+  {% endif %}
+
+</div>
