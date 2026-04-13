@@ -37,8 +37,10 @@
     {% assign cats = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
     {% for cat in cats %}
     {% assign cat_posts = site.posts | where_exp: "p", "p.categories contains cat" %}
+    {% assign cat_slug = cat | slugify %}
+    {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
     <li>
-      <a href="{{ '/category/' | append: cat | slugify | append: '/' | relative_url }}" class="sidebar-category-link">
+      <a href="{{ cat_path | relative_url }}" class="sidebar-category-link">
         {{ cat | capitalize }}
         <span class="sidebar-category-count">{{ cat_posts.size }}</span>
       </a>
@@ -53,7 +55,9 @@
   <div class="sidebar-tag-cloud">
     {% assign tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
     {% for tag in tags %}
-    <a href="{{ '/tag/' | append: tag | slugify | append: '/' | relative_url }}" class="tag-badge">{{ tag }}</a>
+    {% assign tag_slug = tag | slugify %}
+    {% assign tag_path = '/tag/' | append: tag_slug | append: '/' %}
+    <a href="{{ tag_path | relative_url }}" class="tag-badge">{{ tag }}</a>
     {% endfor %}
   </div>
 </div>

@@ -4,14 +4,16 @@
 
 {% if cat_posts.size > 0 %}
 <section class="category-section" aria-label="{{ cat | capitalize }} articles">
+  {% assign cat_slug = cat | slugify %}
+  {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
   <div class="section-header">
     <h2 class="section-title">
-      <a href="{{ '/category/' | append: cat | slugify | append: '/' | relative_url }}">{{ cat | capitalize }}</a>
+      <a href="{{ cat_path | relative_url }}">{{ cat | capitalize }}</a>
     </h2>
     {% if cat_desc %}
     <p class="section-description">{{ cat_desc }}</p>
     {% endif %}
-    <a href="{{ '/category/' | append: cat | slugify | append: '/' | relative_url }}" class="section-more-link">View all &rarr;</a>
+    <a href="{{ cat_path | relative_url }}" class="section-more-link">View all &rarr;</a>
   </div>
   <div class="posts-grid">
     {% for post in cat_posts %}

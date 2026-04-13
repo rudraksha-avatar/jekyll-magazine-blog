@@ -47,7 +47,9 @@ pagination:
           </div>
           <div class="hero-secondary-body">
             {% if post.categories.size > 0 %}
-            <a href="{{ '/category/' | append: post.categories.first | slugify | append: '/' | relative_url }}" class="category-badge">{{ post.categories.first | capitalize }}</a>
+            {% assign hero_cat_slug = post.categories.first | slugify %}
+            {% assign hero_cat_path = '/category/' | append: hero_cat_slug | append: '/' %}
+            <a href="{{ hero_cat_path | relative_url }}" class="category-badge">{{ post.categories.first | capitalize }}</a>
             {% endif %}
             <h2 class="hero-secondary-title">
               <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -129,7 +131,9 @@ pagination:
         <span class="trending-number">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
         <div class="trending-info">
           {% if post.categories.size > 0 %}
-          <a href="{{ '/category/' | append: post.categories.first | slugify | append: '/' | relative_url }}" class="category-badge trending-category">{{ post.categories.first | capitalize }}</a>
+          {% assign trend_cat_slug = post.categories.first | slugify %}
+          {% assign trend_cat_path = '/category/' | append: trend_cat_slug | append: '/' %}
+          <a href="{{ trend_cat_path | relative_url }}" class="category-badge trending-category">{{ post.categories.first | capitalize }}</a>
           {% endif %}
           <h3 class="trending-title">
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>

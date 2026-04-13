@@ -8,8 +8,10 @@
       <a href="{{ '/blog/' | relative_url }}">Blog</a>
     </li>
     {% if page.categories.first %}
+    {% assign bc_cat_slug = page.categories.first | slugify %}
+    {% assign bc_cat_path = '/category/' | append: bc_cat_slug | append: '/' %}
     <li class="breadcrumb-item">
-      <a href="{{ '/category/' | append: page.categories.first | slugify | append: '/' | relative_url }}">{{ page.categories.first | capitalize }}</a>
+      <a href="{{ bc_cat_path | relative_url }}">{{ page.categories.first | capitalize }}</a>
     </li>
     {% endif %}
     <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | truncatewords: 8 }}</li>

@@ -102,7 +102,9 @@ layout: default
           {% if page.categories.size > 0 %}
           <div class="post-categories">
             {% for cat in page.categories %}
-            <a href="{{ '/category/' | append: cat | slugify | append: '/' | relative_url }}" class="category-badge">{{ cat | capitalize }}</a>
+            {% assign cat_slug = cat | slugify %}
+            {% assign cat_path = '/category/' | append: cat_slug | append: '/' %}
+            <a href="{{ cat_path | relative_url }}" class="category-badge">{{ cat | capitalize }}</a>
             {% endfor %}
           </div>
           {% endif %}
@@ -170,7 +172,9 @@ layout: default
         <div class="post-tags">
           <span class="tags-label">Tags:</span>
           {% for tag in page.tags %}
-          <a href="{{ '/tag/' | append: tag | slugify | append: '/' | relative_url }}" class="tag-badge">{{ tag }}</a>
+          {% assign tag_slug = tag | slugify %}
+          {% assign tag_path = '/tag/' | append: tag_slug | append: '/' %}
+          <a href="{{ tag_path | relative_url }}" class="tag-badge">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}
